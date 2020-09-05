@@ -15,7 +15,7 @@
     <script src="js/script.js"></script>
     <script>
         $(document).ready(function() {
-            console.log(Cookies.get('shown'));
+            console.log(Cookies.get('update-modal'));
             if (!Cookies.get('update-modal')) {
                 console.log('opening modal');
                 Cookies.set('update-modal', '1', {expires: 5});
@@ -68,7 +68,7 @@
                     <a class="nav-link" href="#contact"><span>Contact</span></a>
                 </li>
                 <li class="nav-item float-right">
-                    <a class="nav-link" onclick="$('#exampleModal').modal('show');"><span>Updates</span></a>
+                    <a class="nav-link" onclick="$('#updateModal').modal('show');"><span>Updates</span></a>
                 </li>
             </ul>
         </div>

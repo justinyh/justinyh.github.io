@@ -16,6 +16,11 @@ ul {
     margin-bottom: 1rem;
 }
 
+.modal-section a {
+    font-style: italic;
+    text-decoration: underline;
+}
+
 body {
     font-family: 'Raleway', sans-serif;
     color: #035E7B;

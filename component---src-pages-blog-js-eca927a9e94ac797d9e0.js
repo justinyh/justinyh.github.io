@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkJustin_Hu_Personal_Website=self.webpackChunkJustin_Hu_Personal_Website||[]).push([[7],{223:function(e,t,n){n.r(t);var l=n(7294),u=n(5444),a=n(7198),o=(n(7543),n(1633));n(5072),n(175);t.default=function(){return l.createElement(a.Z,null,l.createElement(o.Z,{title:"Blog"}),l.createElement("h1",null,"Hi from the blog"),l.createElement("p",null,"Welcome to page 2"),l.createElement(u.Link,{to:"/"},"Go back to the homepage"))}},175:function(e,t,n){n.p}}]);
+//# sourceMappingURL=component---src-pages-blog-js-eca927a9e94ac797d9e0.js.map

@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("variables.css");
+
+header {
+    font-family: "Montserrat", "Roboto", "sans-serif";
+    font-size: 0.75rem;
+}
+
+a {
+    font-weight: bold;
+    color: var(--green);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+header a {
+    color: var(--opal);
+    text-decoration: none;
+}

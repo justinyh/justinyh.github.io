@@ -1,0 +1,33 @@
+.navy-section {
+    background-color: #30475E;
+    color: #F3F3F3;
+    h1,h2,h3,h4,h5,h6 {
+        color: #F3F3F3;
+    }
+}
+.beige-section {
+    background-color: #E7DEC8;
+    h1,h2,h3,h4,h5,h6 {
+        color: #30475E;
+    }
+}
+.opal-section {
+    background-color: #F3F3F3;
+    h1,h2,h3,h4,h5,h6 {
+        color: #30475E;
+    }
+}
+
+.navy-font {
+    color: #30475E;
+}
+.beige-font {
+    color: #E7DEC8;
+}
+.opal-font {
+    color: #F3F3F3;
+}
+
+path {
+    fill: url("../images/Justin_Hu_Headshot.jpg");
+}

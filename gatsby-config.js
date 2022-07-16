@@ -43,12 +43,12 @@ module.exports = {
         trackingId: "UA-177296750-1",
       },
     },
-    {
-      resolve: `gatsby-source-wordpress`,
-      options: {
-        url: `http://localhost:8080/wordpress/graphql` // 👋
-      }
-    },
+    // {
+    //   resolve: `gatsby-source-wordpress`,
+    //   options: {
+    //     url: `http://localhost:8080/wordpress/graphql` // 👋
+    //   }
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

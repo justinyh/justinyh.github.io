@@ -1,10 +1,9 @@
 import Image from "next/image";
 import { Manrope } from "next/font/google";
 import Container from "@/components/Container";
-import ProfilePic from "/public/justin_profile.jpg";
+import ProfilePic from "../../../public/justin_profile.jpg";
 import ButtonGroup from "@/components/buttons/ButtonGroup";
 import { LinkButton } from "@/components/buttons/LinkButton";
-import Section from "@/components/Section";
 import SideBySide from "@/components/SideBySide";
 import { Metadata } from "next";
 

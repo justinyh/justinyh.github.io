@@ -1,8 +1,8 @@
 import Section from "@/components/Section";
 import SideBySide from "@/components/SideBySide";
 import Image from "next/image";
-import JustinPic from "/public/justin_personal.jpg";
-import FamilyPic from "/public/Family.jpg";
+import JustinPic from "../../../../../public/justin_personal.jpg";
+import FamilyPic from "../../../../../public/Family.jpg";
 
 export default function Personal() {
     return (

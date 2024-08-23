@@ -1,8 +1,8 @@
 import Section from "@/components/Section";
-import USCPic from "/public/USC.jpg";
-import RelativityPic from "/public/Relativity.jpg";
-import RelativityPic2 from "/public/Relativity_2.jpg";
-import RelativityFriendsPic from "/public/Relativity_Friends.jpg";
+import USCPic from "../../../../../public/USC.jpg";
+import RelativityPic from "../../../../../public/Relativity.jpg";
+import RelativityPic2 from "../../../../../public/Relativity_2.jpg";
+import RelativityFriendsPic from "../../../../../public/Relativity_Friends.jpg";
 import Experience from "@/components/Experience";
 
 const experiences = [

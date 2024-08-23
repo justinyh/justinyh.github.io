@@ -6,15 +6,12 @@ import Button from "./buttons/Button";
 import IconButton from "./buttons/IconButton";
 import ButtonGroup from "./buttons/ButtonGroup";
 
-interface IProps {
-
-}
 const SOCIAL_LINKS = {
     github: "https://github.com/justinyh",
     linkedin: "https://linkedin.com/in/justinyh"
 }
 
-export default function Footer(props: IProps) {
+export default function Footer() {
     return (
         <footer className="">
             <div className="mt-6 h-32 flex flex-col justify-center items-center gap-2">

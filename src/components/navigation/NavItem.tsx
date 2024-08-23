@@ -1,13 +1,19 @@
-import Link from "../../../node_modules/next/link";
+import { MouseEvent } from "react";
 import { useRouter } from "../../../node_modules/next/navigation";
 
-export default function NavItem({ title, href="#", onClick }) {
+interface NavItemProps {
+  href: string,
+  onClick: (event?: MouseEvent) => void,
+  title: string,
+}
+
+export default function NavItem({ title, href="#", onClick }: NavItemProps) {
 
   const router = useRouter();
 
-  function handleClick() {
+  function handleClick(event: MouseEvent) {
     router.push(href);
-    onClick();
+    onClick(event);
   }
     return (
       <div>

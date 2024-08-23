@@ -4,13 +4,19 @@ import Tab from "@/components/tabs/Tab";
 import Tabs from "@/components/tabs/Tabs";
 import useSessionStorage from "@/hooks/useSessionStorage";
 import { AnimatePresence, motion } from "framer-motion";
+import { ReactNode } from "react";
 
 enum ResumeType {
     Engineer = 1,
     Personal = 2,
 }
 
-export default function AboutPage(props) {
+interface IProps {
+    personal: ReactNode,
+    professional: ReactNode
+}
+
+export default function AboutPage(props: IProps) {
     const { personal, professional } = props;
     const [type, setType] = useSessionStorage("AboutType", ResumeType.Engineer.toString());
     const typeNumber = parseInt(type);

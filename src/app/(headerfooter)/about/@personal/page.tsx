@@ -1,8 +1,8 @@
 import Section from "@/components/Section";
 import SideBySide from "@/components/SideBySide";
 import Image from "next/image";
-import JustinPic from "/public/justin_personal.JPG";
-import FamilyPic from "/public/Family.JPG";
+import JustinPic from "/public/justin_personal.jpg";
+import FamilyPic from "/public/Family.jpg";
 
 export default function Personal() {
     return (
@@ -11,7 +11,7 @@ export default function Personal() {
                 <Section title="About me">
                     <p className="mt-3">Hi, I'm Justin! My life's been a wild ride so far, so let me tell you bit about it.</p>
                     <div className="w-80 mx-auto mt-3">
-                        <Image src={JustinPic} priority />
+                        <Image src={JustinPic} priority alt="A picture of Justin." />
                     </div> 
                 </Section>
             </div>
@@ -22,7 +22,7 @@ export default function Personal() {
                     <p>Their story inspires me every day to pursue new experiences, even if they’re a bit scary. From them, I get my adventurous spirit and ambitious drive.</p>
                 </div>
                 <div>
-                    <Image src={FamilyPic} />
+                    <Image src={FamilyPic} alt="A picture of Justin and his family."/>
                 </div>
             </SideBySide>
         </div>

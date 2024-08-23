@@ -1,21 +1,18 @@
 "use client"
 
-import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import React, {useContext, useRef} from "react";
+import React, {PropsWithChildren, useContext, useRef} from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation'; // Import your pathname utility
-
 import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { useRouter } from "next/navigation";
 
 const poppins = Poppins({ 
   subsets: ["latin"],
   weight: ["400"]
 });
 
-function FrozenRouter(props: PropsWithChildren<{}>) {
+function FrozenRouter(props: PropsWithChildren) {
   const context = useContext(LayoutRouterContext);
   const frozen = useRef(context).current;
 
@@ -26,7 +23,7 @@ function FrozenRouter(props: PropsWithChildren<{}>) {
   );
 }
 
-export default function RootLayout(props: PropsWithChildren<{}>) {
+export default function RootLayout(props: PropsWithChildren) {
   const pathname = usePathname();
 
   return (

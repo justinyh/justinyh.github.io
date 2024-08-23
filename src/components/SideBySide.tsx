@@ -1,11 +1,11 @@
 import React, { ReactNode } from "react";
-import Section from "./Section";
+import Section, { headerMap } from "./Section";
 
 interface IProps {
     children: ReactNode,
     title?: string,
     sx?: string,
-    h?: number,
+    h?: keyof typeof headerMap,
     gap?: number,
 }
 

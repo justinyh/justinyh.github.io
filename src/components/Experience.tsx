@@ -7,7 +7,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 import Link from "next/link";
 
 interface ImageMetadata {
-    src: string,
+    src: StaticImageData,
     alt: string,
 };
 
@@ -15,8 +15,8 @@ interface ExperienceInfo {
     title: string,
     date: string,
     learnings?: string[],
-    accomplishments: string[],
-    img: ImageMetadata,
+    accomplishments?: string[],
+    img: ImageMetadata
 };
 
 interface IProps {
@@ -46,7 +46,7 @@ export default function Experience(props: IProps) {
                                 <div className="mt-3">
                                     <div className="gap-1 hidden md:block">
                                         <span>Biggest Accomplishment: </span>
-                                        <span>{data.accomplishments[0]}</span>
+                                        <span>{data.accomplishments?.at(0)}</span>
                                     </div>
                                 </div>
                             </div>

@@ -33,7 +33,7 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <Image src={ProfilePic} />
+              <Image src={ProfilePic} alt="A picture of Justin." />
             </div>
           </SideBySide>
           {/* <Section title="Latest Posts">

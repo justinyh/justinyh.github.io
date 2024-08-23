@@ -1,9 +1,17 @@
 "use client"
 
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 import { variantClasses } from "./ButtonHelpers";
 
-export default function Button({ variant="primary", children, onClick = ()=>{}, sx }) {
+interface ButtonProps {
+    children: ReactNode,
+    onClick?: MouseEventHandler,
+    sx?: string,
+    variant?: keyof typeof variantClasses,
+}
+
+export default function Button(props: ButtonProps) {
+    const { children, variant = "primary", sx, onClick } = props;
     return (
         <button className={`${variantClasses[variant]} ${sx}`} onClick={onClick}>
             {children}

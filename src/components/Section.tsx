@@ -3,10 +3,10 @@ import React, { ReactNode } from "react";
 interface IProps {
     title?: string,
     children: ReactNode,
-    h?: number,
+    h?: keyof typeof headerMap,
 };
 
-const headerMap = {
+export const headerMap = {
     1: "",
     2: "text-4xl font-bold",
     3: "text-2xl font-bold",
@@ -15,7 +15,7 @@ const headerMap = {
     6: "text-xl font-bold",
 };
 
-function getHeadingEl(headerNum: number, children: ReactNode) {
+function getHeadingEl(headerNum: keyof typeof headerMap, children: ReactNode) {
     const tag = `h${headerNum}`;
     return React.createElement(tag, { className: `${headerMap[headerNum]} mb-4` }, children);
 }

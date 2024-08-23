@@ -1,12 +1,12 @@
 "use client"
-import React, {useContext, useRef} from "react";
+import React, {PropsWithChildren, useContext, useRef} from "react";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "@/components/buttons/Button";
 import { useRouter } from "next/navigation";
 import Container from "@/components/Container";
 
-export default function Layout(props: PropsWithChildren<{}>) {
+export default function Layout(props: PropsWithChildren) {
   const router = useRouter();
 
   return (

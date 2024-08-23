@@ -1,18 +1,19 @@
 "use client"
 
-import { MouseEventHandler } from "react";
 import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/react-fontawesome/index";
-import Link from "../../../node_modules/next/link";
-import { variantClasses } from "./ButtonHelpers";
 import Button from "./Button";
+import { IconDefinition, SizeProp } from "@fortawesome/fontawesome-svg-core";
+import { variantClasses } from "./ButtonHelpers";
+import { ReactNode } from "react";
 
 interface IProps {
     icon: IconDefinition,
     href?: string,
     onClick?: () => void,
-    size: string,
-    sx: string,
-    children: HTMLElement,
+    size?: SizeProp,
+    sx?: string,
+    children?: ReactNode,
+    variant?: keyof typeof variantClasses,
 }
 
 export default function IconButton(props: IProps) {

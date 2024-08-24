@@ -1,11 +1,15 @@
 "use client"
 
+import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import React, {PropsWithChildren, useContext, useRef} from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation'; // Import your pathname utility
+
 import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useRouter } from "next/navigation";
+import NavBar from "@/components/navigation/NavBar";
 
 const poppins = Poppins({ 
   subsets: ["latin"],
@@ -29,19 +33,21 @@ export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="en" className="">
         <body className={poppins.className}>
-            <AnimatePresence>
+        <NavBar />
+            {/* <AnimatePresence>
                 <motion.div
                     key={pathname}
                     initial={{ y:10, opacity: 0 }}
                     animate={{ y:0, opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.4, type: 'tween' }}
                 >
-                    <FrozenRouter>
+                    <FrozenRouter> */}
                         
                                 {props.children}
-                    </FrozenRouter>
-                </motion.div>
-            </AnimatePresence>
+                    {/* </FrozenRouter> */}
+                {/* </motion.div> */}
+            {/* </AnimatePresence> */}
         </body>
     </html>
   );

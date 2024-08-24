@@ -1,8 +1,4 @@
 import Section from "@/components/Section";
-import USCPic from "../../../../../public/USC.jpg";
-import RelativityPic from "../../../../../public/Relativity.jpg";
-import RelativityPic2 from "../../../../../public/Relativity_2.jpg";
-import RelativityFriendsPic from "../../../../../public/Relativity_Friends.jpg";
 import Experience from "@/components/Experience";
 
 const experiences = [
@@ -15,7 +11,7 @@ const experiences = [
             // "Contributed 5+ components to a framework-agnostic design system used across 50+ applications, resulting in 1000+ total hours of time savings per component for company reinvestment.",
         ],
         img: {
-            src: RelativityPic2,
+            src: "/Relativity_2.jpg",
             alt: "A neon sign that is lit with the word \"Relativity\"",
         }
     },
@@ -27,7 +23,7 @@ const experiences = [
             "Developed a team onboarding and documentation process, which facilitated knowledge sharing and reduced onboarding time for new engineers."
         ],
         img: {
-            src: RelativityFriendsPic,
+            src: "/Relativity_Friends.jpg",
             alt: "A neon sign that is lit with the word \"Relativity\"",
         }
     },
@@ -43,7 +39,7 @@ const experiences = [
             "Developed strong written communication"
         ],
         img: {
-            src: USCPic,
+            src: "/USC.jpg",
             alt: "Justin dressed up in his graduation sash posing with a \"Fight on!\" sign.",
         },
     },
@@ -59,7 +55,7 @@ const experiences = [
             "Wrote C#/.NET integration test suites to increase our deployment confidence, resulting in our release cadence improving from once per month to on-demand via CI/CD."
         ],
         img: {
-            src: RelativityPic,
+            src: "/Relativity.jpg",
             alt: "A neon sign that is lit with the word \"Relativity\"",
         }
     }

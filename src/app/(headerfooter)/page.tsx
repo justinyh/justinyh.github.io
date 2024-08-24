@@ -32,7 +32,10 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <Image src={ProfilePic} alt="A picture of Justin." />
+              <Image src="/justin_profile.jpg" alt="A picture of Justin." priority width={1092} height={1092} sizes="(max-width: 640px) 100vw, 50vw" style={{
+                width: '100%',
+                height: 'auto',
+              }}/>
             </div>
           </SideBySide>
           {/* <Section title="Latest Posts">

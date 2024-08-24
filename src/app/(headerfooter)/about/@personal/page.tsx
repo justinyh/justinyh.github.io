@@ -11,7 +11,7 @@ export default function Personal() {
                 <Section title="About me">
                     <p className="mt-3">Hi, I'm Justin! My life's been a wild ride so far, so let me tell you bit about it.</p>
                     <div className="w-80 mx-auto mt-3">
-                        <Image src={JustinPic} priority alt="A picture of Justin." />
+                        <Image src="/justin_personal.jpg" priority alt="A picture of Justin." width={3024} height={4032} sizes="20rem" />
                     </div> 
                 </Section>
             </div>
@@ -22,7 +22,7 @@ export default function Personal() {
                     <p>Their story inspires me every day to pursue new experiences, even if they’re a bit scary. From them, I get my adventurous spirit and ambitious drive.</p>
                 </div>
                 <div>
-                    <Image src={FamilyPic} alt="A picture of Justin and his family."/>
+                    <Image src="/Family.jpg" alt="A picture of Justin and his family." width={1536} height={2048} sizes="(max-width: 640px) 100vw, 50vw" />
                 </div>
             </SideBySide>
         </div>

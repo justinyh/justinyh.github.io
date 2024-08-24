@@ -10,7 +10,6 @@ export default function HeaderFooterLayout({
 }>) {
   return (
     <Fragment>
-        <NavBar />
         <div className="">
           {children}
         </div>

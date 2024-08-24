@@ -2,12 +2,9 @@ import { Fragment, ReactNode } from "react";
 import Image, { StaticImageData } from "../../node_modules/next/image";
 import Card from "./Card";
 import SideBySide from "./SideBySide";
-import IconButton from "./buttons/IconButton";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
-import Link from "next/link";
 
 interface ImageMetadata {
-    src: StaticImageData,
+    src: string,
     alt: string,
 };
 
@@ -35,7 +32,7 @@ export default function Experience(props: IProps) {
                 <Card>
                     <SideBySide h={3} >
                         <div className="relative h-80 sm:h-auto sm:w-60 flex-shrink-0">
-                            <Image src={data.img.src} alt={data.img.alt} fill={true} sizes="(min-width: 640px) 15rem" style={{ objectFit: "cover" }}></Image>
+                            <Image src={data.img.src} alt={data.img.alt} fill sizes="(max-width: 640px) 100vw, 15rem" style={{ objectFit: "cover" }}></Image>
                         </div>
                         <div>
                             <div className="p-6">

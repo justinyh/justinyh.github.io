@@ -3,10 +3,11 @@ import createMDX from '@next/mdx'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     // Configure `pageExtensions` to include markdown and MDX files
-  images: {
-    unoptimized: true,
-  },
   basePath: "/personal-website-v2",
+  images: {
+    loader: "custom",
+    loaderFile: "./image/loader.js",
+  },
   output: 'export',
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   experimental: {

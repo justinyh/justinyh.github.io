@@ -1,7 +1,7 @@
 "use client"
 
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { DM_Sans, Manrope, Poppins } from "next/font/google";
 import "./globals.css";
 import React, {PropsWithChildren, useContext, useRef} from "react";
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,10 +10,11 @@ import { usePathname } from 'next/navigation'; // Import your pathname utility
 import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useRouter } from "next/navigation";
 import NavBar from "@/components/navigation/NavBar";
+import Footer from "@/components/Footer";
 
-const poppins = Poppins({ 
+const poppins = DM_Sans({ 
   subsets: ["latin"],
-  weight: ["400"]
+  weight: ["300"]
 });
 
 function FrozenRouter(props: PropsWithChildren) {
@@ -48,6 +49,7 @@ export default function RootLayout(props: PropsWithChildren) {
                     {/* </FrozenRouter> */}
                 {/* </motion.div> */}
             {/* </AnimatePresence> */}
+            <Footer />
         </body>
     </html>
   );

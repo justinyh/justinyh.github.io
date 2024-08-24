@@ -12,8 +12,8 @@ const config: Config = {
       "orange": "#f0a500",
       "white": "#ffffff",
       "primary": "#008200",
-      "background-lt": "f0f0f0",
-      "background-dk": "000000",
+      "background-lt": "#f0f0f0",
+      "background-dk": "#222",
     },
     extend: {
       backgroundImage: {

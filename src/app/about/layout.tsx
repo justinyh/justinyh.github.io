@@ -1,28 +1,26 @@
-"use client"
-import React, {PropsWithChildren, useContext, useRef} from "react";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "@/components/buttons/Button";
-import { useRouter } from "next/navigation";
-import Container from "@/components/Container";
+import { Manrope } from "next/font/google";
+import { Metadata } from "next";
+import AboutPage from "./TabbedPage";
+import { ReactNode } from "react";
 
-export default function Layout(props: PropsWithChildren) {
-  const router = useRouter();
+const manrope = Manrope({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+    title: 'Justin Hu | About',
+    description: 'Justin Hu is a software engineer based in Chicago, IL. He has over three years of development experience.',
+  }
+
+export default function About({
+    personal,
+    professional
+}: {
+    personal: ReactNode,
+    professional: ReactNode,
+}) {
 
   return (
-    <main>
-      <header className="h-12 text-xl">
-        <div>
-          <Button variant="secondary" onClick={() => router.back()}>
-            <FontAwesomeIcon icon={faAngleLeft} />
-          </Button>
-        </div>
-      </header>
-        <Container>
-          <article className="prose">
-            {props.children}
-          </article>
-        </Container>
+    <main className="mt-4">
+        <AboutPage personal={personal} professional={professional} />
     </main>
   );
 }

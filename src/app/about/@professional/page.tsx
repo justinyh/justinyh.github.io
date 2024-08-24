@@ -65,7 +65,7 @@ export default function Professional() {
     return (
         <div className="flex flex-col gap-10">
             <Section title="Digital Resume">
-                <p>Hi, I'm Justin! I'm a software engineer with over three years of full-stack development experience. I am currently at Relativity, which is the world's leading e-discovery platform. There, I have spearheaded multiple high-impact projects.</p>
+                <p>Hi, I'm Justin! I'm a software engineer with over three years of full-stack development experience. I am currently working at Relativity, which is the world's leading e-discovery platform. There, I have spearheaded multiple high-impact projects.</p>
             </Section>
             <Section title="How I Got Here">
                 <div className="flex flex-col gap-4">

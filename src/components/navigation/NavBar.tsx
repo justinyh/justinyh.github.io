@@ -5,6 +5,9 @@ import Link from "../../../node_modules/next/link";
 import IconButton from "../buttons/IconButton";
 import NavItem from "./NavItem";
 import NavMenu from "./NavMenu";
+import { Manrope } from "next/font/google";
+
+const manrope = Manrope({ subsets: ["latin"] });
 
 export default function NavBar() {
     const [ menuIsVisible, setMenuIsVisible ] = React.useState(false);
@@ -28,7 +31,7 @@ export default function NavBar() {
 
     return (
         <Fragment>
-            <div className="flex justify-between items-center md:px-8 h-16">
+            <div className={`flex justify-between items-center sm:px-8 h-16 font-medium ${manrope.className}`}>
                 <div>
                     {/* Logo here */}
                 </div>

@@ -2,6 +2,9 @@ import { Fragment, ReactNode } from "react";
 import Image, { StaticImageData } from "../../node_modules/next/image";
 import Card from "./Card";
 import SideBySide from "./SideBySide";
+import { Manrope } from "next/font/google";
+
+const manrope = Manrope({ subsets: ["latin"] });
 
 interface ImageMetadata {
     src: string,
@@ -21,10 +24,6 @@ interface IProps {
     data: ExperienceInfo,
 }
 
-const openModal = () => {
-    alert("test");
-}
-
 export default function Experience(props: IProps) {
     const { data, children } = props;
     return (
@@ -37,7 +36,7 @@ export default function Experience(props: IProps) {
                         <div>
                             <div className="p-6">
                                 {/* <Link href={`about/${data.id}`}> */}
-                                    <div className="text-2xl font-bold">{data.title}</div>
+                                    <div className={`text-2xl font-bold ${manrope.className}`}>{data.title}</div>
                                 {/* </Link> */}
                                 <div className="mt-3 italic">{data.date}</div>
                                 <div className="mt-3">

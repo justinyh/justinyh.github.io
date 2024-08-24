@@ -20,8 +20,8 @@ export default function Home() {
       <Container>
         <div className="flex flex-col mt-12 gap-32">
           <SideBySide sx="flex-col-reverse items-center" gap={8}>
-            <div className="md:min-w-96">
-              <h1 className={`${manrope.className} text-4xl md:text-5xl font-bold`}>Hey, I'm Justin!</h1>
+            <div className="sm:max-w-72 md:max-w-96 lg:max-w-none">
+              <h1 className={`${manrope.className} text-4xl md:text-5xl font-extrabold`}>Hey, I'm Justin!</h1>
               <p className="text-base my-4">I’m a software engineer currently based in Chicago, IL. I have over three years of full-stack development experience.</p>
               <p>I’m originally from Des Moines, Iowa and the proud son of immigrant parents who taught me the value of dedication and dreaming big.</p>
               <div className="mt-6">

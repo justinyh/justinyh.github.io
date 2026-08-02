@@ -1,4 +1,4 @@
-import { Post as PostType } from "../../../../payload-types";
+import { Post as PostType } from "@/payload-types";
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Heading } from "@/components/Heading";
 

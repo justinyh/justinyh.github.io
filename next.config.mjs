@@ -12,7 +12,4 @@ const nextConfig = {
   // Optionally, add any other Next.js config below
 };
 
-export default withPayload(nextConfig) 
-
-
-import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());
+export default withPayload(nextConfig)

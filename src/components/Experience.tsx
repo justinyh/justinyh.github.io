@@ -1,8 +1,9 @@
 import { Fragment, ReactNode } from "react";
-import Image, { StaticImageData } from "../../node_modules/next/image";
+import Image from "../../node_modules/next/image";
 import Card from "./Card";
 import SideBySide from "./SideBySide";
 import { Manrope } from "next/font/google";
+import Button from "./buttons/Button";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -21,31 +22,35 @@ interface ExperienceInfo {
 
 interface IProps {
     children?: ReactNode,
-    data: ExperienceInfo,
+    imgSrc: string,
+    imgAlt: string,
+    title: string,
+    date: string,
+    onMoreClick?: () => void,
 }
 
 export default function Experience(props: IProps) {
-    const { data, children } = props;
+    const { title, date, children, imgSrc, imgAlt, onMoreClick } = props;
     return (
         <Fragment>
                 <Card>
                     <SideBySide h={3} >
-                        <div className="relative h-80 sm:h-auto sm:w-60 flex-shrink-0">
-                            <Image src={data.img.src} alt={data.img.alt} fill sizes="(max-width: 640px) 100vw, 15rem" style={{ objectFit: "cover" }}></Image>
+                        <div className="relative flex items-center h-full w-full aspect-square sm:h-64 sm:w-64">
+                            <Image src={imgSrc} alt={imgAlt} fill sizes="(max-width: 640px) 100vw, 15rem" style={{ objectFit: "cover" }}></Image>
                         </div>
-                        <div>
                             <div className="p-6">
                                 {/* <Link href={`about/${data.id}`}> */}
-                                    <div className={`text-2xl font-bold ${manrope.className}`}>{data.title}</div>
+                                    <div className={`text-2xl font-bold ${manrope.className}`}>{title}</div>
                                 {/* </Link> */}
-                                <div className="mt-3 italic">{data.date}</div>
+                                <div className="mt-3 italic">{date}</div>
                                 <div className="mt-3">
                                     <div className="gap-1 hidden md:block">
-                                        <span>Biggest Accomplishment: </span>
-                                        <span>{data.accomplishments?.at(0)}</span>
+                                        {children}
+                                        {/* <span>Biggest Accomplishment: </span>
+                                        <span>{data.accomplishments?.at(0)}</span> */}
                                     </div>
+                                    {onMoreClick && <Button onClick={onMoreClick}>Learn more</Button> }
                                 </div>
-                            </div>
                         </div>
                     </SideBySide>
                 </Card>

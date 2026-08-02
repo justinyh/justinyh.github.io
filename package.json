@@ -2,11 +2,13 @@
   "name": "personal-website-v2",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run generate:types && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "generate:types": "PAYLOAD_CONFIG_PATH=payload.config.ts payload generate:types"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -15,22 +17,32 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
-    "@next/mdx": "^14.2.5",
+    "@next/mdx": "16.2.11",
+    "@payloadcms/db-mongodb": "^3.86.0",
+    "@payloadcms/next": "^3.86.0",
+    "@payloadcms/richtext-lexical": "^3.86.0",
     "@types/mdx": "^2.0.13",
-    "framer-motion": "^11.3.28",
-    "next": "14.2.4",
-    "react": "^18",
-    "react-dom": "^18"
+    "motion": "^12.42.2",
+    "next": "16.2.11",
+    "next-intl": "^4.13.4",
+    "payload": "^3.86.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@payloadcms/typescript-plugin": "^3.86.0",
     "@tailwindcss/typography": "^0.5.14",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.4",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "eslint": "10.7.0",
+    "eslint-config-next": "16.2.11",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3"
   }
 }

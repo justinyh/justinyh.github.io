@@ -1,4 +1,5 @@
 import createMDX from '@next/mdx'
+import withPayload from '@payloadcms/next/withPayload';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -7,7 +8,7 @@ const nextConfig = {
     loader: "custom",
     loaderFile: "./image/loader.js",
   },
-  output: 'export',
+  output: 'standalone',
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   experimental: {
     mdxRs: true
@@ -19,4 +20,5 @@ const withMDX = createMDX({
     // Add markdown plugins here, as desired
 });
 
-export default withMDX(nextConfig)
+export default withPayload(withMDX(nextConfig)) 
+

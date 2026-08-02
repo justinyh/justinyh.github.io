@@ -1,10 +1,9 @@
 "use client"
 
 import type { Metadata } from "next";
-import { DM_Sans, Manrope, Poppins } from "next/font/google";
+import { DM_Sans, Manrope, Poppins, Jost } from "next/font/google";
 import "./globals.css";
-import React, {PropsWithChildren, useContext, useRef} from "react";
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { PropsWithChildren, useContext, useRef, use } from "react";
 import { usePathname } from 'next/navigation'; // Import your pathname utility
 
 import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
@@ -14,7 +13,7 @@ import Footer from "@/components/Footer";
 
 const poppins = DM_Sans({ 
   subsets: ["latin"],
-  weight: ["300"]
+  weight: ["400", "700"]
 });
 
 function FrozenRouter(props: PropsWithChildren) {
@@ -33,24 +32,24 @@ export default function RootLayout(props: PropsWithChildren) {
 
   return (
     <html lang="en" className="">
-        <body className={poppins.className}>
-        <NavBar />
-            {/* <AnimatePresence>
-                <motion.div
-                    key={pathname}
-                    initial={{ y:10, opacity: 0 }}
-                    animate={{ y:0, opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4, type: 'tween' }}
-                >
-                    <FrozenRouter> */}
-                        
-                                {props.children}
-                    {/* </FrozenRouter> */}
-                {/* </motion.div> */}
-            {/* </AnimatePresence> */}
-            <Footer />
-        </body>
+      <body className={poppins.className}>
+      <NavBar />
+          {/* <AnimatePresence>
+              <motion.div
+                  key={pathname}
+                  initial={{ y:10, opacity: 0 }}
+                  animate={{ y:0, opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4, type: 'tween' }}
+              >
+                  <FrozenRouter> */}
+                      
+                              {props.children}
+                  {/* </FrozenRouter> */}
+              {/* </motion.div> */}
+          {/* </AnimatePresence> */}
+          <Footer />
+      </body>
     </html>
   );
 }

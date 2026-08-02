@@ -7,13 +7,15 @@ interface IProps {
     sx?: string,
     h?: keyof typeof headerMap,
     gap?: number,
+    reverse?: boolean,
 }
 
 export default function SideBySide(props: IProps) {
-    const { children, title, gap, sx = "", h } = props;
+    const { children, title, gap, sx = "", h, reverse } = props;
+    const colClass = reverse ? "flex-col-reverse" : "flex-col"
     return (
         <Section title={title} h={h}>
-            <div className={`flex flex-col sm:flex-row ${gap ? `gap-${gap}` : ""} ${sx}`}>
+            <div className={`flex ${colClass} sm:flex-row ${gap ? `gap-${gap}` : ""} ${sx}`}>
                 {children}
             </div>
         </Section>

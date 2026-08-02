@@ -3,7 +3,7 @@ import Container from "@/components/Container";
 import Tab from "@/components/tabs/Tab";
 import Tabs from "@/components/tabs/Tabs";
 import useSessionStorage from "@/hooks/useSessionStorage";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { ReactNode } from "react";
 
 enum ResumeType {

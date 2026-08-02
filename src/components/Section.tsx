@@ -8,6 +8,7 @@ interface IProps {
     title?: string,
     children: ReactNode,
     h?: keyof typeof headerMap,
+    center?: boolean
 };
 
 export const headerMap = {
@@ -19,17 +20,17 @@ export const headerMap = {
     6: "text-xl font-bold",
 };
 
-function getHeadingEl(headerNum: keyof typeof headerMap, children: ReactNode) {
+function getHeadingEl(headerNum: keyof typeof headerMap, children: ReactNode, center: boolean) {
     const tag = `h${headerNum}`;
-    return React.createElement(tag, { className: `${headerMap[headerNum]} ${manrope.className} mb-4` }, children);
+    return React.createElement(tag, { className: `${headerMap[headerNum]} ${manrope.className} ${center ? "text-center" : ""} mb-4` }, children);
 }
 
 export default function Section(props: IProps) {
-    const { title, children, h = 2 } = props;
+    const { title, children, h = 2, center = false } = props;
     return (
         <section>
             {title ?
-            getHeadingEl(h, title) 
+            getHeadingEl(h, title, center) 
             : null
 }
             {children}

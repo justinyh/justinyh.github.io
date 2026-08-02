@@ -29,6 +29,6 @@
     "enabled": true
   },
   "vars": {
-		"NEXT_PUBLIC_IMAGES_URL": "r2.justinyh.com"
+    // Put runtime env variables here
 	}
 }

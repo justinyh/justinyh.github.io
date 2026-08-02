@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: 'Justin Hu is a software engineer based in Chicago, IL. He has over three years of development experience.',
   }
 
-export default async function Blog() {
+export default function Blog() {
     // const payload = await getPayload({ config })
     // const posts = await payload.find({
     //     collection: "posts"

@@ -1,4 +1,4 @@
-import sharp from 'sharp'
+// import sharp from 'sharp'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { buildConfig } from 'payload'
@@ -29,5 +29,5 @@ export default buildConfig({
   // make sure to install it and pass it to the config.
   // This is optional - if you don't need to do these things,
   // you don't need it!
-  sharp,
+  // sharp,
 })

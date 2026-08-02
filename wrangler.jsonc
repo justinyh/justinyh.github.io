@@ -1,48 +1,48 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "main": ".open-next/worker.js",
-  "name": "personal-website",
-  "compatibility_date": "2026-08-02",
-  "compatibility_flags": [
-    "nodejs_compat",
-    "global_fetch_strictly_public"
-  ],
-  "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
-  },
-  "services": [
-    {
-      "binding": "WORKER_SELF_REFERENCE",
-      "service": "personal-website"
-    }
-  ],
-  "r2_buckets": [
-    {
-      "binding": "NEXT_INC_CACHE_R2_BUCKET",
-      "bucket_name": "personal-website-opennext-cache"
-    },
-    {
-      "binding": "R2",
-      "bucket_name": "personal-website"
-    }
-  ],
-  "d1_databases": [
-    {
-      "binding": "D1",
-      "database_name": "personal-website",
-      "database_id": "686ec65b-565b-42dc-96bb-f013bc7f5445",
-      "remote": true
-    }
-  ],
-  "images": {
-    "binding": "IMAGES"
-  },
-  "observability": {
-    "enabled": true
-  },
-  "vars": {
-    // Put runtime env variables here
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "personal-website",
+	"compatibility_date": "2026-08-02",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
 	},
-  "upload_source_maps": true
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "personal-website"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "NEXT_INC_CACHE_R2_BUCKET",
+			"bucket_name": "personal-website-opennext-cache"
+		},
+		{
+			"binding": "R2",
+			"bucket_name": "personal-website"
+		}
+	],
+	"d1_databases": [
+		{
+			"binding": "D1",
+			"database_name": "personal-website",
+			"database_id": "364a9586-89d5-4082-850a-a482d156deb4",
+			"remote": true
+		}
+	],
+	"images": {
+		"binding": "IMAGES"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"vars": {
+		// Put runtime env variables here
+	},
+	"upload_source_maps": true
 }

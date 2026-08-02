@@ -24,7 +24,8 @@
 		},
 		{
 			"binding": "R2",
-			"bucket_name": "personal-website"
+			"bucket_name": "personal-website",
+      "preview_bucket_name": "personal-website",
 		}
 	],
 	"d1_databases": [

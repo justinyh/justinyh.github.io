@@ -1,9 +1,5 @@
 import Section from "@/components/Section";
 import Experience from "@/components/Experience";
-import { Link } from "@/components/Link";
-import Image from "next/image";
-import AtlassianLogo from "@images/Atlassian_Logo_white.svg";
-import FocusLogo from "@images/Focus_icon.svg";
 import { Chip } from "@/components/Chip";
 
 export default function Professional() {

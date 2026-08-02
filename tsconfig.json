@@ -14,13 +14,15 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
         "name": "next"
       },
-      { "name": "@payloadcms/typescript-plugin" }
+      {
+        "name": "@payloadcms/typescript-plugin"
+      }
     ],
     "paths": {
       "@/*": [
@@ -29,7 +31,9 @@
       "@images/*": [
         "./public/images/*"
       ],
-      "@payload-config": ["./payload.config.ts"]
+      "@payload-config": [
+        "./src/payload.config.ts"
+      ]
     },
     "target": "ES2017"
   },

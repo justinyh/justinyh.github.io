@@ -7,10 +7,17 @@ const nextConfig = {
     loader: "custom",
     loaderFile: "./image/loader.js",
   },
-  output: 'standalone',
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   // Optionally, add any other Next.js config below
+  serverExternalPackages: ['jose', 'pg-cloudflare'],
+  webpack: (webpackConfig) => {
+    webpackConfig.resolve.extensionAlias = {
+      '.cjs': ['.cts', '.cjs'],
+      '.js': ['.ts', '.tsx', '.js', '.jsx'],
+      '.mjs': ['.mts', '.mjs'],
+    }
+
+    return webpackConfig
+  },
 };
 
-export default withPayload(nextConfig)
-import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());
+export default withPayload(nextConfig, { devBundleServerPackages: false })

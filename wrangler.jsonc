@@ -4,7 +4,8 @@
   "name": "personal-website",
   "compatibility_date": "2026-08-02",
   "compatibility_flags": [
-    "nodejs_compat"
+    "nodejs_compat",
+    "global_fetch_strictly_public"
   ],
   "assets": {
     "directory": ".open-next/assets",
@@ -20,6 +21,18 @@
     {
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
       "bucket_name": "personal-website-opennext-cache"
+    },
+    {
+      "binding": "R2",
+      "bucket_name": "personal-website"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "D1",
+      "database_name": "personal-website",
+      "database_id": "686ec65b-565b-42dc-96bb-f013bc7f5445",
+      "remote": true
     }
   ],
   "images": {

@@ -5,7 +5,11 @@ export const Images: CollectionConfig = {
   access: {
     read: () => true,
   },
-  upload: true,
+  upload: {
+    // Sharp not supported in Cloudflare Workers now
+    crop: false,
+    focalPoint: false
+  },
   fields: [
     {
       name: 'alt',

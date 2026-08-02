@@ -24,7 +24,7 @@ export default function Home() {
               <p>I’m originally from Des Moines, Iowa and the proud son of immigrant parents who taught me the value of dedication and dreaming big.</p>
               <div className="mt-6">
                 <ButtonGroup>
-                  <LinkButton href="/Justin_Hu_Resume_2024.pdf" newTab>Resume</LinkButton>
+                  <LinkButton href="https://r2.justinyh.com/Justin_Hu_Resume_2024.pdf" newTab>Resume</LinkButton>
                   <LinkButton href="/about" variant="secondary">Meet Me</LinkButton>
                 </ButtonGroup>
               </div>

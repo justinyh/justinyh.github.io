@@ -11,7 +11,10 @@ import { Posts } from '../collections/posts'
 import { Images } from '../collections/images'
 import { CloudflareContext, getCloudflareContext } from '@opennextjs/cloudflare'
 import { GetPlatformProxyOptions } from 'wrangler'
+import { fileURLToPath } from 'url'
 
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 const realpath = (value: string) => (fs.existsSync(value) ? fs.realpathSync(value) : undefined)
 const isCLI = process.argv.some((value) => realpath(value)?.endsWith(path.join('payload', 'bin.js')))
 const isProduction = process.env.NODE_ENV === 'production'
@@ -44,6 +47,9 @@ export default buildConfig({
       account: '/my-account', 
       logout: '/logout'
     },
+    importMap: {
+      baseDir: path.resolve(dirname),
+    },
   },
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor(),
@@ -64,7 +70,10 @@ export default buildConfig({
       bucket: cloudflare.env.R2,
       collections: { images: true },
     }),
-  ]
+  ],
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
   // If you want to resize images, crop, set focal point, etc.
   // make sure to install it and pass it to the config.
   // This is optional - if you don't need to do these things,

@@ -24,6 +24,16 @@ export const Posts: CollectionConfig = {
       type: 'text',
     },
     {
+        name: 'thumbnail',
+        type: 'upload',
+        relationTo: 'images',
+    },
+    {
+        name: 'hero',
+        type: 'upload',
+        relationTo: 'images'
+    },
+    {
         name: 'content',
         type: 'richText'
     }

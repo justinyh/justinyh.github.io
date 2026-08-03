@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Container from "@/components/Container";
-import ProfilePic from "../../../public/justin_profile.jpg";
 import ButtonGroup from "@/components/buttons/ButtonGroup";
 import { LinkButton } from "@/components/buttons/LinkButton";
 import SideBySide from "@/components/SideBySide";
@@ -10,6 +9,12 @@ import { Heading } from "@/components/Heading";
 export const metadata: Metadata = {
   title: 'Justin Hu | Engineer',
   description: 'Justin Hu is a software engineer based in Seattle, WA. He has over five years of software development experience.',
+}
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Justin Hu',
+  url: "https://justinyh.com/"
 }
 
 export default function Home() {
@@ -38,6 +43,12 @@ export default function Home() {
           </Section> */}
         </div>
       </Container>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
     </main>
   );
 }

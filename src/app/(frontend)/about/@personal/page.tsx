@@ -19,7 +19,7 @@ export default function Personal() {
                     <div className="w-80 h-80 mx-auto flex-shrink-0">
                         <Image src="about/Family.jpeg" alt="A picture of Justin and his family." width={640} height={640} sizes="(max-width: 640px) 100vw, 50vw" />
                     </div>
-                    <p>These days, I often think about how they left their families and lives behind and flew across the Pacific Ocean with nothing but a few hundred dollars to their name. I asked them if they were scared to make such a crazy journey, but they replied, "No honestly, we were excited!" And I think that just about sums up their attitude towards life.</p>
+                    <p>These days, I often think about how they left their families and lives behind and flew across the Pacific Ocean with nothing but a few hundred dollars to their name. When I asked them if they were scared to make such a crazy journey, they replied, "No honestly, we were excited!" And I think that just about sums up their attitude towards life.</p>
                     <p>Their story inspires me every day to pursue new experiences, even if they’re a bit scary. From them, I get my adventurous spirit and ambitious drive.</p>
                 </div>
             </Section>

@@ -1,4 +1,4 @@
-import { Post as PostType } from "@/payload-types";
+import { Thought as ThoughtType } from "@/payload-types";
 import { JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
 import { Heading } from "@/components/Heading";
 import { getPayload } from "payload";
@@ -11,7 +11,7 @@ interface PostPreviewProps {
 }
 
 interface BlogHeaderProps {
-    post: PostType
+    post: ThoughtType
 }
 type NodeTypes =
   | DefaultNodeTypes
@@ -38,7 +38,7 @@ export default async function Post({ params }: PostPreviewProps) {
     const { slug } = await params
     const payload = await getPayload({ config })
     const post = await payload.findByID({
-        collection: "posts",
+        collection: "thoughts",
         id: slug
     });
     return (

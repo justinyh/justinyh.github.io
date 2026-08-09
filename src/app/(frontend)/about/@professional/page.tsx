@@ -28,7 +28,7 @@ export default function Professional() {
             <Section title="Experiences">
                 <div className="mt-4 flex flex-col gap-8">
                     <Experience title="Full Stack Software Engineer @ Atlassian" date="February 2025 - Present" imgSrc="/images/Atlassian_Logo_blue.svg" imgAlt="Atlassian Logo">
-                        Biggest Accomplishment: Led a build system migration, achieving a 45% reduction in build times, a 38% decrease in bundle size, and resulted in zero P1/P2 incidents.
+                        Biggest Accomplishment: Developed Views, a feature that allows users to save and return to commonly used table displays. By using React + Relay, we were able to build a reusable component that scaled across the application to three different entities.
                     </Experience>
                     <Experience title="Advanced Software Engineer @ Relativity" date="June 2021 - January 2025" imgSrc="about/Relativity.jpeg" imgAlt="A neon sign that is lit with the word 'Relativity'">
                         Biggest Accomplishment: Led a build system migration, achieving a 45% reduction in build times, a 38% decrease in bundle size, and resulted in zero P1/P2 incidents.

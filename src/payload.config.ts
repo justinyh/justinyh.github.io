@@ -3,44 +3,17 @@ import fs from 'fs'
 import path from 'path'
 
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite'
-import { r2Storage } from '@payloadcms/storage-r2'
+import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 import { buildConfig } from 'payload'
-import { Posts } from '../collections/posts'
-import { Images } from '../collections/images'
-import { CloudflareContext, getCloudflareContext } from '@opennextjs/cloudflare'
-import { GetPlatformProxyOptions } from 'wrangler'
+import { Thoughts } from '../collections/thoughts'
+import { Media } from '../collections/media'
 import { fileURLToPath } from 'url'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-const realpath = (value: string) => (fs.existsSync(value) ? fs.realpathSync(value) : undefined)
-const isCLI = process.argv.some((value) => realpath(value)?.endsWith(path.join('payload', 'bin.js')))
-const isProduction = process.env.NODE_ENV === 'production'
-const cloudflare =
-  isCLI || !isProduction
-    ? await getCloudflareContextFromWrangler()
-    : await getCloudflareContext({ async: true })
 
-  const createLog =
-  (level: string, fn: typeof console.log) => (objOrMsg: object | string, msg?: string) => {
-    if (typeof objOrMsg === 'string') {
-      fn(JSON.stringify({ level, msg: objOrMsg }))
-    } else {
-      fn(JSON.stringify({ level, ...objOrMsg, msg: msg ?? (objOrMsg as { msg?: string }).msg }))
-    }
-  }
-  const cloudflareLogger = {
-  level: process.env.PAYLOAD_LOG_LEVEL || 'info',
-  trace: createLog('trace', console.debug),
-  debug: createLog('debug', console.debug),
-  info: createLog('info', console.log),
-  warn: createLog('warn', console.warn),
-  error: createLog('error', console.error),
-  fatal: createLog('fatal', console.error),
-  silent: () => {},
-} as any // Use PayloadLogger type when it's exported
 export default buildConfig({
   admin: {
     routes: {
@@ -55,20 +28,24 @@ export default buildConfig({
   editor: lexicalEditor(),
 
   // Define and configure your collections in this array
-  collections: [Posts, Images],
+  collections: [Thoughts, Media],
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || '',
   // Whichever Database Adapter you're using should go here
   // Mongoose is shown as an example, but you can also use Postgres
-  db: sqliteD1Adapter({
-    binding: cloudflare.env.D1,
+  db: mongooseAdapter({
+    url: process.env.MONGODB_URI || ''
   }),
-  logger: isProduction ? cloudflareLogger : undefined,
   plugins: [
-    r2Storage({
-      bucket: cloudflare.env.R2,
-      collections: { images: true },
+    vercelBlobStorage({
+      enabled: true, // Optional, defaults to true
+      // Specify which collections should use Vercel Blob
+      collections: {
+        media: true,
+      },
+      // Token provided by Vercel once Blob storage is added to your Vercel project
+      token: process.env.BLOB_READ_WRITE_TOKEN,
     }),
   ],
   typescript: {
@@ -80,14 +57,3 @@ export default buildConfig({
   // you don't need it!
   // sharp,
 })
-
-// Adapted from https://github.com/opennextjs/opennextjs-cloudflare/blob/d00b3a13e42e65aad76fba41774815726422cc39/packages/cloudflare/src/api/cloudflare-context.ts#L328C36-L328C46
-function getCloudflareContextFromWrangler(): Promise<CloudflareContext> {
-  return import(/* webpackIgnore: true */ `${'__wrangler'.replaceAll('_', '')}`).then(
-    ({ getPlatformProxy }) =>
-      getPlatformProxy({
-        environment: process.env.CLOUDFLARE_ENV,
-        remoteBindings: isProduction,
-      } satisfies GetPlatformProxyOptions),
-  )
-}

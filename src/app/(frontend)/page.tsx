@@ -7,7 +7,7 @@ import { Metadata } from "next";
 import { Heading } from "@/components/Heading";
 
 export const metadata: Metadata = {
-  title: 'Justin Hu | Engineer',
+  title: 'Justin Hu | Developer',
   description: 'Justin Hu is a software engineer based in Seattle, WA. He has over five years of software development experience.',
 }
 const jsonLd = {

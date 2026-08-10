@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-export const Posts: CollectionConfig = {
-  slug: 'posts',
+export const Thoughts: CollectionConfig = {
+  slug: 'thoughts',
   access: {
     read: ({ req }) => {
       // If there is a user logged in,
@@ -24,14 +24,9 @@ export const Posts: CollectionConfig = {
       type: 'text',
     },
     {
-        name: 'thumbnail',
-        type: 'upload',
-        relationTo: 'images',
-    },
-    {
         name: 'hero',
         type: 'upload',
-        relationTo: 'images'
+        relationTo: 'media'
     },
     {
         name: 'content',
@@ -39,6 +34,8 @@ export const Posts: CollectionConfig = {
     }
   ],
   versions: {
-    drafts: true,
+    drafts: {
+      autosave: true,
+    },
   }
 }

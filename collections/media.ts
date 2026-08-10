@@ -1,19 +1,24 @@
 import type { CollectionConfig } from 'payload'
 
-export const Images: CollectionConfig = {
-  slug: 'images',
+export const Media: CollectionConfig = {
+  slug: 'media',
   access: {
     read: () => true,
   },
   upload: {
-    // Sharp not supported in Cloudflare Workers now
-    crop: false,
-    focalPoint: false
+    imageSizes: [
+      {
+        name: "thumbnail",
+        height: 640,
+        width: 640
+      }
+    ]
   },
   fields: [
     {
       name: 'alt',
       type: 'text',
+      required: true,
     },
     {
         name: 'caption',

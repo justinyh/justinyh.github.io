@@ -24,8 +24,9 @@ export default function NavBar() {
         <NavMenu isVisible={menuIsVisible}>
             <NavItem title="Home" href="/" onClick={handleNavItemClick} />
             <NavItem title="About" href="/about" onClick={handleNavItemClick}/>
-            <NavItem title="Projects" href="/projects"onClick={handleNavItemClick} />
-            <NavItem title="Blog" href="/blog" onClick={handleNavItemClick}/>
+            <NavItem title="Tech" href="/tech"onClick={handleNavItemClick} />
+            <NavItem title="Travels" href="/travels" onClick={handleNavItemClick} />
+            <NavItem title="Thoughts" href="/thoughts" onClick={handleNavItemClick}/>
         </NavMenu>
     );
 

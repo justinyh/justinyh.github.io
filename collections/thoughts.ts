@@ -24,11 +24,6 @@ export const Thoughts: CollectionConfig = {
       type: 'text',
     },
     {
-        name: 'thumbnail',
-        type: 'upload',
-        relationTo: 'media',
-    },
-    {
         name: 'hero',
         type: 'upload',
         relationTo: 'media'
@@ -39,6 +34,8 @@ export const Thoughts: CollectionConfig = {
     }
   ],
   versions: {
-    drafts: true,
+    drafts: {
+      autosave: true,
+    },
   }
 }

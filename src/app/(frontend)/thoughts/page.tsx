@@ -19,12 +19,13 @@ interface BlogPostCardProps {
 }
 
 const BlogPostCard = ({post}: BlogPostCardProps) => {
-    const thumbNail = isExpandedDoc<Media>(post.thumbnail) ? post.thumbnail : undefined;
+    const hero = isExpandedDoc<Media>(post.hero) ? post.hero : undefined;
+    const thumbnail = hero?.sizes?.thumbnail;
 
     return (
         <Link href={`/thoughts/${post.id}`} key={post.id}>
                 <Card>
-                    {thumbNail?.url ? <Image width={640} height={640} src={thumbNail.url} alt={thumbNail.alt || ""} unoptimized /> : null}
+                    {thumbnail?.url ? <Image width={640} height={640} src={thumbnail?.url} alt={hero?.alt || ""} unoptimized /> : null}
                     <div className="p-6 text-center font-bold text-lg">{post.title}</div>
                 </Card>
         </Link>
@@ -34,7 +35,7 @@ const BlogPostCard = ({post}: BlogPostCardProps) => {
 export default async function Blog() {
     const payload = await getPayload({ config })
     const posts = await payload.find({
-        collection: "thoughts"
+        collection: "thoughts",
     });
     return (
         <main>

@@ -5,6 +5,8 @@ import { getPayload } from "payload";
 import config from "@payload-config"
 import Container from "@/components/Container";
 import { DefaultNodeTypes, SerializedBlockNode } from "@payloadcms/richtext-lexical";
+import { RefreshRouteOnSave } from "@/components/RefreshRouteOnSave";
+import converters from "./converters"
 
 interface PostPreviewProps {
     params: Promise<{slug: string}>,
@@ -39,18 +41,20 @@ export default async function Post({ params }: PostPreviewProps) {
     const payload = await getPayload({ config })
     const post = await payload.findByID({
         collection: "thoughts",
-        id: slug
+        id: slug,
+        draft: true,
     });
     return (
         <main>
             <Container>
-                <div className="mt-10 color-green">
+                <div className="mt-6 color-green">
                     <BlogHeader post={post} />
                     <div className="my-3">
-                        {post.content && <RichText className="space-y-3" data={post.content} converters={jsxConverters} /> }
+                        {post.content && <RichText className="space-y-3" data={post.content} converters={converters} /> }
                     </div>
                 </div>
             </Container>
+            <RefreshRouteOnSave />
         </main>
     );
 }

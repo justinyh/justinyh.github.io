@@ -1,4 +1,4 @@
-// import sharp from 'sharp'
+import sharp from 'sharp'
 import fs from 'fs'
 import path from 'path'
 
@@ -23,6 +23,15 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    livePreview: {
+      url: ({ data, collectionConfig, locale }) =>
+        `http://localhost:3000${
+          collectionConfig?.slug === 'thoughts'
+            ? `/thoughts/${data.id}`
+            : `${data.slug !== 'home' ? `/${data.slug}` : ''}`
+        }${locale ? `?locale=${locale?.code}` : ''}`,
+      collections: ["thoughts"]
+    }
   },
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor(),
@@ -55,5 +64,5 @@ export default buildConfig({
   // make sure to install it and pass it to the config.
   // This is optional - if you don't need to do these things,
   // you don't need it!
-  // sharp,
+  sharp,
 })

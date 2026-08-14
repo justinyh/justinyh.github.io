@@ -2,11 +2,12 @@ import { ReactNode } from "react"
 import { Manrope } from "next/font/google";
 
 export type HeadingLevels = 1 | 2 | 3 | 4 | 5 | 6;
-
+export type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+ 
 interface Props {
     children: ReactNode,
-    size?: 's' | 'm' | 'l',
     level?: HeadingLevels,
+    tag?: HeadingTag,
 }
 
 const levelMap = {
@@ -20,8 +21,8 @@ const levelMap = {
 
 const manrope = Manrope({ subsets: ["latin"] });
 
-export const Heading = ({ children, level = 1 }: Props) => {
+export const Heading = ({ children, level = 2, tag: Tag = "h1" }: Props) => {
     return (
-        <h1 className={`${manrope.className} ${levelMap[level]} font-extrabold`}>{children}</h1>
+        <Tag className={`${manrope.className} ${levelMap[level]} font-extrabold`}>{children}</Tag>
     )
 }

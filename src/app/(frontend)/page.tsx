@@ -24,12 +24,12 @@ export default function Home() {
         <div className="flex flex-col mt-12 gap-32">
           <SideBySide sx="flex-col-reverse items-center" gap={8}>
             <div className="sm:max-w-72 md:max-w-96 lg:max-w-none">
-              <Heading size="l">Hey, I'm Justin!</Heading>
+              <Heading level={1}>Hey, I'm Justin!</Heading>
               <p className="text-base my-4">I’m a software engineer currently based in Seattle, WA. I have over five years of full-stack development experience.</p>
               <p>I’m originally from Des Moines, Iowa and the proud son of immigrant parents who taught me the value of dedication and dreaming big.</p>
               <div className="mt-6">
                 <ButtonGroup>
-                  <LinkButton href="https://r2.justinyh.com/Justin_Hu_Resume_2024.pdf" newTab>Resume</LinkButton>
+                  <LinkButton href="https://ucopquvpjm213wrr.private.blob.vercel-storage.com/Hu_Resume_2024.pdf?vercel-blob-delegation=eyJzdG9yZUlkIjoic3RvcmVfdWNPcFF1dlBqbTIxM3dSUiIsIm93bmVySWQiOiJ0ZWFtX05yN0pmdHh0eGR6a0dxZGNsbGpkdE82cCIsInBhdGhuYW1lIjoiKiIsIm9wZXJhdGlvbnMiOlsiZ2V0IiwiaGVhZCJdLCJ2YWxpZFVudGlsIjoxNzg2NzIxMzYzMDg5LCJpYXQiOjE3ODY2NzgxNjMxNTF9.YTi7rWbqE3dWVTXZkC8JkjFt9nb0Eyc7PSrx6TUjkFI&vercel-blob-signature=9rJksOinZOrwTyHzajxYd8CIomGR8aK5CeXIJQipH2o" newTab>Resume</LinkButton>
                   <LinkButton href="/about" variant="secondary">Meet Me</LinkButton>
                 </ButtonGroup>
               </div>

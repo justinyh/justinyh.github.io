@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run generate:types && next build",
     "ci-build": "opennextjs-cloudflare build --env=$CLOUDFLARE_ENV",
-    "dev": "next dev",
+    "dev": "next dev --experimental-https",
     "start": "next start",
     "lint": "eslint .",
     "generate:migrations": "payload migrate:create",

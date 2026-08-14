@@ -1,15 +1,18 @@
 import { Thought as ThoughtType } from "@/payload-types";
-import { JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Heading } from "@/components/Heading";
 import { getPayload } from "payload";
 import config from "@payload-config"
 import Container from "@/components/Container";
-import { DefaultNodeTypes, SerializedBlockNode } from "@payloadcms/richtext-lexical";
+import { DefaultNodeTypes } from "@payloadcms/richtext-lexical";
 import { RefreshRouteOnSave } from "@/components/RefreshRouteOnSave";
 import converters from "./converters"
+import { notFound } from "next/navigation";
+import { headers as getHeaders } from "next/headers";
 
 interface PostPreviewProps {
     params: Promise<{slug: string}>,
+    searchParams: Promise<{draft: boolean}>,
 }
 
 interface BlogHeaderProps {
@@ -21,29 +24,34 @@ type NodeTypes =
 const BlogHeader = ({ post }: BlogHeaderProps) => {
     return (
         <div className="border-b">
-            <Heading>{post.title}</Heading>
+            <Heading level={1}>{post.title}</Heading>
             <div className="font-bold py-4">
                 By: Justin Hu
             </div>
-            
         </div>
     );
 }
-const jsxConverters: JSXConvertersFunction<NodeTypes> = ({defaultConverters}) => ({
-    ...defaultConverters,
-    paragraph: ({ node, nodesToJSX }) => (
-        <p>{nodesToJSX({ nodes: node.children })}</p>
-    )
-});
 
-export default async function Post({ params }: PostPreviewProps) {
+export default async function Post({ params, searchParams }: PostPreviewProps) {
     const { slug } = await params
+    const { draft } = await searchParams
     const payload = await getPayload({ config })
+    let user = null;
+    if (draft) {
+        const headers = await getHeaders();
+        user = (await payload.auth({ headers })).user;
+    }
     const post = await payload.findByID({
         collection: "thoughts",
         id: slug,
+        disableErrors: true,
         draft: true,
+        overrideAccess: false,
+        user,
     });
+    if (!post) {
+        notFound();
+    }
     return (
         <main>
             <Container>

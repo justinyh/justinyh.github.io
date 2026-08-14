@@ -2,11 +2,12 @@ import sharp from 'sharp'
 import fs from 'fs'
 import path from 'path'
 
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 import { buildConfig } from 'payload'
+import { Pages } from "../collections/pages"
 import { Thoughts } from '../collections/thoughts'
 import { Media } from '../collections/media'
 import { fileURLToPath } from 'url'
@@ -23,21 +24,21 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    livePreview: {
-      url: ({ data, collectionConfig, locale }) =>
-        `http://localhost:3000${
-          collectionConfig?.slug === 'thoughts'
-            ? `/thoughts/${data.id}`
-            : `${data.slug !== 'home' ? `/${data.slug}` : ''}`
-        }${locale ? `?locale=${locale?.code}` : ''}`,
-      collections: ["thoughts"]
-    }
   },
   // If you'd like to use Rich Text, pass your editor here
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => {
+      return [
+        ...defaultFeatures,
+        HeadingFeature({
+          enabledHeadingSizes: ["h2", "h3", "h4", "h5", "h6"]
+        })
+      ];
+    }
+  }),
 
   // Define and configure your collections in this array
-  collections: [Thoughts, Media],
+  collections: [Pages, Thoughts, Media],
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || '',

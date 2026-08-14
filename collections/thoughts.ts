@@ -18,6 +18,12 @@ export const Thoughts: CollectionConfig = {
       }
     },
   },
+  admin: {
+    livePreview: {
+      url: ({ data }) =>
+        `thoughts/${data.id}?draft=true`
+    }
+  },
   fields: [
     {
       name: 'title',

@@ -36,6 +36,11 @@ export default async function Blog() {
     const payload = await getPayload({ config })
     const posts = await payload.find({
         collection: "thoughts",
+        where: {
+            _status: {
+                equals: "published"
+            }
+        }
     });
     return (
         <main>

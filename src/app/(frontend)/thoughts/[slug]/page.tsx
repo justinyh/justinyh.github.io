@@ -10,7 +10,7 @@ import converters from "./converters"
 import { notFound } from "next/navigation";
 import { headers as getHeaders } from "next/headers";
 import { Metadata } from "next";
-import { formatDate } from "@/util/format-date";
+import { DateSubHeader } from "./DateSubHeader";
 
 interface PostPreviewProps {
     params: Promise<{slug: string}>,
@@ -26,10 +26,8 @@ type NodeTypes =
 const BlogHeader = ({ post }: BlogHeaderProps) => {
     return (
         <div className="border-b">
-            <Heading level={1}>{post.title}</Heading>
-            <div className="py-3">
-                Posted by: Justin Hu on {formatDate(post.createdAt)}
-            </div>
+            <Heading level={2}>{post.title}</Heading>
+            <DateSubHeader publishDate={post.publishedAt} updateDate={post.updatedAt} />
         </div>
     );
 }

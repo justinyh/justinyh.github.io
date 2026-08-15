@@ -41,8 +41,36 @@ export const Thoughts: CollectionConfig = {
     {
         name: 'content',
         type: 'richText'
+    },
+    {
+      name: 'publishedAt',
+      type: 'date',
+      admin: {
+        readOnly: true,
+      },
     }
   ],
+  hooks: {
+    beforeChange: [
+      async ({ data, operation, originalDoc, req: { payload } }) => {
+        if (operation === 'create') {
+          return data;
+        }
+        const currentDoc = await payload.findByID({
+          collection: "thoughts",
+          id: originalDoc.id,
+        });
+        if (
+          data._status === 'published' &&
+          currentDoc._status !== 'published'
+        ) {
+          data.publishedAt = data.updatedAt
+        }
+
+        return data
+      },
+    ],
+  },
   versions: {
     drafts: {
       autosave: true,

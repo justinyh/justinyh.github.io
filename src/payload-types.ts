@@ -147,6 +147,7 @@ export interface Thought {
     };
     [k: string]: unknown;
   } | null;
+  publishedAt?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -293,6 +294,7 @@ export interface ThoughtsSelect<T extends boolean = true> {
   subheading?: T;
   hero?: T;
   content?: T;
+  publishedAt?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

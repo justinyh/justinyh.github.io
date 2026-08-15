@@ -43,7 +43,6 @@ export async function generateMetadata(
         collection: "thoughts",
         id: slug,
         disableErrors: true,
-        overrideAccess: false,
     });
  
     return {

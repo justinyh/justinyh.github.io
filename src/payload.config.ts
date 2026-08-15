@@ -28,7 +28,7 @@ export default buildConfig({
     },
   },
   serverURL: `https://${isProduction 
-    ? process.env.VERCEL_PROJECT_PRODUCTION_URL 
+    ? process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL 
     : process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}`,
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor({

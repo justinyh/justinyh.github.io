@@ -37,9 +37,7 @@ const BlogHeader = ({ post }: BlogHeaderProps) => {
 export async function generateMetadata(
   { params }: PostPreviewProps,
 ): Promise<Metadata> {
-  const slug = (await params).slug
- 
-  // fetch post information
+    const slug = (await params).slug
     const payload = await getPayload({ config })
     const post = await payload.findByID({
         collection: "thoughts",
@@ -48,10 +46,10 @@ export async function generateMetadata(
         overrideAccess: false,
     });
  
-  return {
-    title: post?.title,
-    description: post?.subheading,
-  }
+    return {
+        title: post?.title,
+        description: post?.subheading,
+    }
 }
 
 export default async function Post({ params, searchParams }: PostPreviewProps) {

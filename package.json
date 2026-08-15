@@ -5,19 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "npm run generate:types && next build",
-    "ci-build": "opennextjs-cloudflare build --env=$CLOUDFLARE_ENV",
     "dev": "next dev --experimental-https",
     "start": "next start",
     "lint": "eslint .",
-    "generate:migrations": "payload migrate:create",
     "generate:types": "PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview --env=$CLOUDFLARE_ENV",
-    "deploy-staging": "CLOUDFLARE_ENV=staging npm run deploy:database && npm run deploy:app",
-    "deploy": "npm run deploy:database && npm run deploy:app",
-    "deploy:app": "opennextjs-cloudflare deploy --env=$CLOUDFLARE_ENV",
-    "deploy:database": "cross-env NODE_ENV=production PAYLOAD_SECRET=ignore payload migrate && wrangler d1 execute D1 --command 'PRAGMA optimize' --env=$CLOUDFLARE_ENV --remote",
-    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -27,7 +18,7 @@
     "@opennextjs/cloudflare": "1.11.0",
     "@payloadcms/db-d1-sqlite": "3.84.1",
     "@payloadcms/db-mongodb": "^3.84.1",
-    "@payloadcms/live-preview-react": "^3.87.1",
+    "@payloadcms/live-preview-react": "^3.84.1",
     "@payloadcms/next": "3.84.1",
     "@payloadcms/richtext-lexical": "3.84.1",
     "@payloadcms/storage-r2": "3.84.1",

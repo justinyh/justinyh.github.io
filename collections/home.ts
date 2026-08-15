@@ -2,6 +2,9 @@ import type { GlobalConfig } from 'payload'
 
 export const HomePage: GlobalConfig = {
   slug: 'home',
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: 'title',

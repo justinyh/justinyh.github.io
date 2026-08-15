@@ -11,7 +11,7 @@ interface LinkButtonProps {
 export function LinkButton({ variant="primary", children, href="#", newTab = false }: PropsWithChildren<LinkButtonProps>) {
         return (
         <Link href={href} target={newTab ? "_blank" : (void 0)}>
-            <button tabIndex={-1} className={variantClasses[variant]}>
+            <button tabIndex={-1} className={`cursor-pointer ${variantClasses[variant]}`}>
                 {children}
             </button>
         </Link>

@@ -30,6 +30,10 @@ export const Thoughts: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'subheading',
+      type: 'textarea',
+    },
+    {
         name: 'hero',
         type: 'upload',
         relationTo: 'media'

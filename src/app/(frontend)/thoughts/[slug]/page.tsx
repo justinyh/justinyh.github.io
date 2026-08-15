@@ -9,6 +9,8 @@ import { RefreshRouteOnSave } from "@/components/RefreshRouteOnSave";
 import converters from "./converters"
 import { notFound } from "next/navigation";
 import { headers as getHeaders } from "next/headers";
+import { Metadata } from "next";
+import { formatDate } from "@/util/format-date";
 
 interface PostPreviewProps {
     params: Promise<{slug: string}>,
@@ -25,11 +27,29 @@ const BlogHeader = ({ post }: BlogHeaderProps) => {
     return (
         <div className="border-b">
             <Heading level={1}>{post.title}</Heading>
-            <div className="font-bold py-4">
-                By: Justin Hu
+            <div className="py-3">
+                Posted by: Justin Hu on {formatDate(post.createdAt)}
             </div>
         </div>
     );
+}
+
+export async function generateMetadata(
+  { params }: PostPreviewProps,
+): Promise<Metadata> {
+    const slug = (await params).slug
+    const payload = await getPayload({ config })
+    const post = await payload.findByID({
+        collection: "thoughts",
+        id: slug,
+        disableErrors: true,
+        overrideAccess: false,
+    });
+ 
+    return {
+        title: post?.title,
+        description: post?.subheading,
+    }
 }
 
 export default async function Post({ params, searchParams }: PostPreviewProps) {
@@ -53,7 +73,7 @@ export default async function Post({ params, searchParams }: PostPreviewProps) {
         notFound();
     }
     return (
-        <main>
+        <main className="text-lg">
             <Container>
                 <div className="mt-6 color-green">
                     <BlogHeader post={post} />

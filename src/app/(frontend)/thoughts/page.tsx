@@ -42,7 +42,7 @@ export default async function Blog() {
                                         <Heading level={3} tag="h2">
                                             {post.title}
                                         </Heading>
-                                        <div className="italic">{formatDate(post.createdAt)}</div>
+                                        {post.publishedAt && <div className="italic">{formatDate(post.publishedAt)}</div>}
                                         <p className="line-clamp-4 md:line-clamp-5 xl:line-clamp-8">
                                             {post.subheading ? post.subheading : post.content && convertLexicalToPlaintext({data: post.content})}
                                         </p>

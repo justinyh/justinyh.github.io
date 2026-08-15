@@ -1,5 +1,6 @@
 import { MouseEvent } from "react";
 import { useRouter } from "../../../node_modules/next/navigation";
+import Link from "next/link";
 
 interface NavItemProps {
   href: string,
@@ -9,15 +10,9 @@ interface NavItemProps {
 
 export default function NavItem({ title, href="#", onClick }: NavItemProps) {
 
-  const router = useRouter();
-
-  function handleClick(event: MouseEvent) {
-    router.push(href);
-    onClick(event);
-  }
     return (
       <div>
-        <button onClick={handleClick}>{title}</button>
+        <Link href={href} onClick={onClick}>{title}</Link>
       </div>
     );
   }

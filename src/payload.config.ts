@@ -7,13 +7,15 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 import { buildConfig } from 'payload'
-import { Pages } from "../collections/pages"
+import { HomePage } from "../collections/home"
 import { Thoughts } from '../collections/thoughts'
 import { Media } from '../collections/media'
 import { fileURLToPath } from 'url'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production';
 
 export default buildConfig({
   admin: {
@@ -25,6 +27,9 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  serverURL: `https://${isProduction 
+    ? process.env.VERCEL_PROJECT_PRODUCTION_URL 
+    : process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}`,
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => {
@@ -37,8 +42,10 @@ export default buildConfig({
     }
   }),
 
+  globals: [HomePage],
+
   // Define and configure your collections in this array
-  collections: [Pages, Thoughts, Media],
+  collections: [Thoughts, Media],
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || '',

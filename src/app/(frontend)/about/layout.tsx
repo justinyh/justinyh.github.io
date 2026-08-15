@@ -1,6 +1,6 @@
 import { Manrope } from "next/font/google";
 import { Metadata } from "next";
-import AboutPage from "./TabbedPage";
+import AboutPage from "./AboutPage";
 import { ReactNode } from "react";
 
 const manrope = Manrope({ subsets: ["latin"] });

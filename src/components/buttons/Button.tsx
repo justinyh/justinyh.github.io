@@ -13,7 +13,7 @@ interface ButtonProps {
 export default function Button(props: ButtonProps) {
     const { children, variant = "primary", sx, onClick } = props;
     return (
-        <button className={`${variantClasses[variant]} ${sx}`} onClick={onClick}>
+        <button className={`cursor-pointer ${variantClasses[variant]} ${sx}`} onClick={onClick}>
             {children}
         </button>
     );

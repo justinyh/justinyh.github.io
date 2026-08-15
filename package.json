@@ -8,7 +8,7 @@
     "dev": "next dev --experimental-https",
     "start": "next start",
     "lint": "eslint .",
-    "generate:types": "PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
+    "generate:types": "PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",

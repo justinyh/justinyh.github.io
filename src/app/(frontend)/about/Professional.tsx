@@ -4,7 +4,7 @@ import { Chip } from "@/components/Chip";
 
 export default function Professional() {
     return (
-        <div className="flex flex-col gap-10">
+        <div className="space-y-8">
             <Section title="Digital Resume">
                 <p>I'm a software engineer with over five years of full-stack development experience. I currently work at <Chip fillColor="#0052CC" href="https://www.atlassian.com/">Atlassian</Chip>
                     , where I'm helping develop their new enterprise strategic planning product called <Chip fillColor="#F68909" fontColor="#FFFFFF" href="https://www.atlassian.com/software/focus">Focus</Chip>.

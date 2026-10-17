@@ -2,13 +2,8 @@ import withPayload from '@payloadcms/next/withPayload';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Configure `pageExtensions` to include markdown and MDX files
-  images: {
-    loader: "custom",
-    loaderFile: "./image/loader.js",
-  },
   // Optionally, add any other Next.js config below
-  serverExternalPackages: ['jose', 'pg-cloudflare'],
+  serverExternalPackages: ['jose'],
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],

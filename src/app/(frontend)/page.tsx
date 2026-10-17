@@ -43,7 +43,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="min-w-24">
-              <Image src="profile_picture.jpg" alt="A picture of Justin." priority width={1092} height={1092}/>
+              <Image src="/images/profile_picture.jpg" alt="A picture of Justin." priority width={1092} height={1092}/>
             </div>
           </SideBySide>
           {/* <Section title="Latest Posts">

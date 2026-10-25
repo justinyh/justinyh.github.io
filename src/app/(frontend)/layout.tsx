@@ -3,11 +3,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Manrope, Poppins, Jost } from "next/font/google";
 import "./globals.css";
-import React, { PropsWithChildren, useContext, useRef, use } from "react";
-import { usePathname } from 'next/navigation'; // Import your pathname utility
-
-import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { useRouter } from "next/navigation";
+import React, { PropsWithChildren } from "react";
 import NavBar from "@/components/navigation/NavBar";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
@@ -17,38 +13,12 @@ const poppins = DM_Sans({
   weight: ["400", "700"]
 });
 
-function FrozenRouter(props: PropsWithChildren) {
-  const context = useContext(LayoutRouterContext);
-  const frozen = useRef(context).current;
-
-  return (
-    <LayoutRouterContext.Provider value={frozen}>
-      {props.children}
-    </LayoutRouterContext.Provider>
-  );
-}
-
 export default function RootLayout(props: PropsWithChildren) {
-  const pathname = usePathname();
-
   return (
     <html lang="en" className="">
       <body className={poppins.className}>
       <NavBar />
-          {/* <AnimatePresence>
-              <motion.div
-                  key={pathname}
-                  initial={{ y:10, opacity: 0 }}
-                  animate={{ y:0, opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4, type: 'tween' }}
-              >
-                  <FrozenRouter> */}
-                      
-                              {props.children}
-                  {/* </FrozenRouter> */}
-              {/* </motion.div> */}
-          {/* </AnimatePresence> */}
+          {props.children}
           <Footer />
           <Analytics />
       </body>

@@ -10,6 +10,7 @@ import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.sha
 import { useRouter } from "next/navigation";
 import NavBar from "@/components/navigation/NavBar";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 const poppins = DM_Sans({ 
   subsets: ["latin"],
@@ -49,6 +50,7 @@ export default function RootLayout(props: PropsWithChildren) {
               {/* </motion.div> */}
           {/* </AnimatePresence> */}
           <Footer />
+          <Analytics />
       </body>
     </html>
   );

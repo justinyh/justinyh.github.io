@@ -20,6 +20,7 @@
     "@payloadcms/next": "3.84.1",
     "@payloadcms/richtext-lexical": "3.84.1",
     "@payloadcms/storage-vercel-blob": "^3.84.1",
+    "@vercel/analytics": "^2.0.1",
     "cross-env": "^10.1.0",
     "motion": "^12.42.2",
     "next": "^16.3.0",

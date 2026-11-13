@@ -48,6 +48,15 @@ export const Thoughts: CollectionConfig = {
       admin: {
         readOnly: true,
       },
+    },
+    {
+      name: 'featured',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+        description: 'Show at the top of the Thoughts page. If several posts are featured, the most recent one wins.',
+      },
     }
   ],
   hooks: {

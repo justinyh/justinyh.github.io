@@ -148,6 +148,10 @@ export interface Thought {
     [k: string]: unknown;
   } | null;
   publishedAt?: string | null;
+  /**
+   * Show at the top of the Thoughts page. If several posts are featured, the most recent one wins.
+   */
+  featured?: boolean | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -295,6 +299,7 @@ export interface ThoughtsSelect<T extends boolean = true> {
   hero?: T;
   content?: T;
   publishedAt?: T;
+  featured?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

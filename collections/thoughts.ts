@@ -54,9 +54,6 @@ export const Thoughts: CollectionConfig = {
       type: 'relationship',
       relationTo: 'users',
       defaultValue: ({ user }) => user?.id,
-      hooks: {
-        beforeChange: [({ value, req }) => value || req.user?.id || value],
-      },
       admin: {
         position: 'sidebar',
       },

@@ -64,18 +64,18 @@ export default async function Blog() {
                         {rest.length > 0 &&
                             <div className="divide-y divide-background-dk dark:divide-background-lt border-t border-background-dk dark:border-background-lt">
                                 {rest.map((post) =>
-                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="grid md:grid-cols-12 gap-6 py-8">
+                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="grid grid-cols-12 gap-4 md:gap-6 py-8">
                                         {isMediaType(post.hero) &&
-                                            <div className="md:col-span-4">
-                                                <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} />
+                                            <div className="col-span-4">
+                                                <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} className="w-full aspect-square object-cover rounded-md" />
                                             </div>
                                         }
-                                        <div className="md:col-span-8 md:col-start-5 text-ellipsis flex flex-col gap-3">
-                                            <Heading level={3} tag="h2">
+                                        <div className="col-span-8 col-start-5 min-w-0 flex flex-col gap-3">
+                                            <Heading level={5} tag="h2">
                                                 {post.title}
                                             </Heading>
                                             <PostMeta post={post} />
-                                            <p className="line-clamp-2 md:line-clamp-3">
+                                            <p className="text-base line-clamp-2 md:line-clamp-3">
                                                 {excerpt(post)}
                                             </p>
                                         </div>

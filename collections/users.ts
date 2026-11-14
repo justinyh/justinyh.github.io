@@ -1,7 +1,5 @@
 import type { CollectionConfig } from 'payload'
 
-// Same slug and auth setup as Payload's built-in users collection, so existing
-// admin accounts keep working; this just adds profile fields to them.
 export const Users: CollectionConfig = {
   slug: 'users',
   auth: true,

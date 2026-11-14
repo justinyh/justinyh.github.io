@@ -23,7 +23,6 @@ interface BlogHeaderProps {
 }
 
 const BlogHeader = ({ post, author }: BlogHeaderProps) => {
-    // Name and picture come from the post's author (Users → your account in the CMS).
     const name = author?.name || "Justin Hu";
     const avatar = typeof author?.profilePicture === "object" ? author.profilePicture : null;
     const avatarSrc = avatar?.sizes?.thumbnail?.url || avatar?.url;
@@ -33,7 +32,6 @@ const BlogHeader = ({ post, author }: BlogHeaderProps) => {
         <div className="border-b">
             <Heading level={2}>{post.title}</Heading>
             {hero?.url &&
-                // eslint-disable-next-line @next/next/no-img-element
                 <img
                     src={hero.url}
                     width={hero.width ?? undefined}
@@ -44,7 +42,6 @@ const BlogHeader = ({ post, author }: BlogHeaderProps) => {
             }
             <div className="py-3 flex items-center gap-3">
                 {avatar && avatarSrc &&
-                    // eslint-disable-next-line @next/next/no-img-element
                     <img src={avatarSrc} alt={avatar.alt} width={40} height={40} className="size-10 shrink-0 rounded-full object-cover" />
                 }
                 <span>
@@ -92,8 +89,6 @@ export default async function Post({ params, searchParams }: PostPreviewProps) {
     if (!post) {
         notFound();
     }
-    // Users aren't publicly readable (that would expose emails), so look up only
-    // the author's public profile fields with access checks bypassed.
     const authorId = typeof post.author === "object" ? post.author?.id : post.author;
     const author = authorId
         ? await payload.findByID({

@@ -53,11 +53,7 @@ export const Thoughts: CollectionConfig = {
       name: 'author',
       type: 'relationship',
       relationTo: 'users',
-      // Pre-fills new posts with the signed-in user.
       defaultValue: ({ user }) => user?.id,
-      // Payload also applies defaultValue when *reading* a post that has no
-      // author stored, so the editor can show you as author without it being
-      // saved. This hook makes sure any save actually stores it.
       hooks: {
         beforeChange: [({ value, req }) => value || req.user?.id || value],
       },

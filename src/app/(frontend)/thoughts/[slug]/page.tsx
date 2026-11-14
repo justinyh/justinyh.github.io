@@ -10,7 +10,7 @@ import converters from "./converters"
 import { notFound } from "next/navigation";
 import { headers as getHeaders } from "next/headers";
 import { Metadata } from "next";
-import { DateComponent } from "@/components/DateComponent";
+import { Byline } from "@/components/Byline";
 
 interface PostPreviewProps {
     params: Promise<{slug: string}>,
@@ -23,9 +23,6 @@ interface BlogHeaderProps {
 }
 
 const BlogHeader = ({ post, author }: BlogHeaderProps) => {
-    const name = author?.name || "Justin Hu";
-    const avatar = typeof author?.profilePicture === "object" ? author.profilePicture : null;
-    const avatarSrc = avatar?.sizes?.thumbnail?.url || avatar?.url;
     const hero = typeof post.hero === "object" ? post.hero : null;
 
     return (
@@ -40,15 +37,7 @@ const BlogHeader = ({ post, author }: BlogHeaderProps) => {
                     className="w-full aspect-video object-cover rounded-md"
                 />
             }
-            <div className="flex items-center gap-3">
-                {avatar && avatarSrc &&
-                    <img src={avatarSrc} alt={avatar.alt} width={40} height={40} className="size-10 shrink-0 rounded-full object-cover" />
-                }
-                <span className="text-base">
-                    <span className="font-semibold">{name}</span>
-                    {post.publishedAt && <span className="opacity-70"> · <DateComponent date={post.publishedAt} /></span>}
-                </span>
-            </div>
+            <Byline author={author} date={post.publishedAt} />
         </div>
     );
 }

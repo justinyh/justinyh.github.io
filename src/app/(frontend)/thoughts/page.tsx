@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Heading } from "@/components/Heading"
 import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintext'
 import { isMediaType } from "@/util/payload-helpers"
-import { DateComponent } from "@/components/DateComponent"
+import { Byline } from "@/components/Byline"
 import { Thought } from "@/payload-types"
 
 export const metadata: Metadata = {
@@ -18,9 +18,7 @@ const excerpt = (post: Thought) =>
     post.subheading ? post.subheading : post.content && convertLexicalToPlaintext({ data: post.content })
 
 const PostMeta = ({ post }: { post: Thought }) =>
-    <div className="italic">
-        Justin Hu{post.publishedAt && <> · <DateComponent date={post.publishedAt} showTime={false} /></>}
-    </div>
+    <Byline author={post.author} date={post.publishedAt} showTime={false} />
 
 export default async function Blog() {
     const payload = await getPayload({ config })

@@ -17,9 +17,6 @@ export const metadata: Metadata = {
 const excerpt = (post: Thought) =>
     post.subheading ? post.subheading : post.content && convertLexicalToPlaintext({ data: post.content })
 
-const PostMeta = ({ post }: { post: Thought }) =>
-    <Byline author={post.author} date={post.publishedAt} showTime={false} />
-
 export default async function Blog() {
     const payload = await getPayload({ config })
     const posts = await payload.find({
@@ -55,7 +52,7 @@ export default async function Blog() {
                                 <Heading level={2} tag="h1">
                                     {featured.title}
                                 </Heading>
-                                <PostMeta post={featured} />
+                                <Byline author={featured.author} date={featured.publishedAt} showTime={false} />
                                 <p className="line-clamp-3 md:line-clamp-4">
                                     {excerpt(featured)}
                                 </p>
@@ -74,7 +71,6 @@ export default async function Blog() {
                                             <Heading level={5} tag="h2">
                                                 {post.title}
                                             </Heading>
-                                            <PostMeta post={post} />
                                             <p className="text-base line-clamp-2 md:line-clamp-3">
                                                 {excerpt(post)}
                                             </p>

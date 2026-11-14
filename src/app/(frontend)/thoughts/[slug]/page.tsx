@@ -1,4 +1,4 @@
-import { Thought as ThoughtType } from "@/payload-types";
+import { Thought as ThoughtType, User as UserType } from "@/payload-types";
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Heading } from "@/components/Heading";
 import { getPayload } from "payload";
@@ -19,14 +19,26 @@ interface PostPreviewProps {
 
 interface BlogHeaderProps {
     post: ThoughtType
+    author?: Pick<UserType, "name" | "profilePicture"> | null
 }
 
-const BlogHeader = ({ post }: BlogHeaderProps) => {
+const BlogHeader = ({ post, author }: BlogHeaderProps) => {
+    // Name and picture come from the post's author (Users → your account in the CMS).
+    const name = author?.name || "Justin Hu";
+    const avatar = typeof author?.profilePicture === "object" ? author.profilePicture : null;
+    const avatarSrc = avatar?.sizes?.thumbnail?.url || avatar?.url;
+
     return (
         <div className="border-b">
             <Heading level={2}>{post.title}</Heading>
-            <div className="py-3">
-                Posted by: Justin Hu {post.publishedAt && <>on <DateComponent date={post.publishedAt} /></>}
+            <div className="py-3 flex items-center gap-3">
+                {avatar && avatarSrc &&
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={avatarSrc} alt={avatar.alt} width={40} height={40} className="size-10 shrink-0 rounded-full object-cover" />
+                }
+                <span>
+                    Posted by: {name} {post.publishedAt && <>on <DateComponent date={post.publishedAt} /></>}
+                </span>
             </div>
         </div>
     );
@@ -69,11 +81,23 @@ export default async function Post({ params, searchParams }: PostPreviewProps) {
     if (!post) {
         notFound();
     }
+    // Users aren't publicly readable (that would expose emails), so look up only
+    // the author's public profile fields with access checks bypassed.
+    const authorId = typeof post.author === "object" ? post.author?.id : post.author;
+    const author = authorId
+        ? await payload.findByID({
+            collection: "users",
+            id: authorId,
+            depth: 1,
+            disableErrors: true,
+            select: { name: true, profilePicture: true },
+        })
+        : null;
     return (
         <main className="text-lg">
             <Container>
                 <div className="mt-6 color-green">
-                    <BlogHeader post={post} />
+                    <BlogHeader post={post} author={author} />
                     <div className="my-3">
                         {post.content && <RichText className="space-y-3" data={post.content} converters={converters} /> }
                     </div>

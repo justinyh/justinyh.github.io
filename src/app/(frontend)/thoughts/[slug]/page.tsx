@@ -21,22 +21,13 @@ interface BlogHeaderProps {
     post: ThoughtType
 }
 
-const MS_PER_DAY = 1000 * 60 * 60 * 24;
-
 const BlogHeader = ({ post }: BlogHeaderProps) => {
-    const showUpdateDate = post.publishedAt && new Date(post.updatedAt).getTime() - new Date(post.publishedAt).getTime() > MS_PER_DAY;
-
     return (
         <div className="border-b">
             <Heading level={2}>{post.title}</Heading>
             <div className="py-3">
                 Posted by: Justin Hu {post.publishedAt && <>on <DateComponent date={post.publishedAt} /></>}
             </div>
-            { showUpdateDate &&
-                <div>
-                    Updated at: <DateComponent date={post.updatedAt} />
-                </div>
-            }
         </div>
     );
 }

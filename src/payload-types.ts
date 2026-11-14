@@ -194,7 +194,7 @@ export interface Media {
 export interface User {
   id: string;
   /**
-   * Shown as "Posted by: <name>" on blog posts.
+   * Shown as the author name on blog posts.
    */
   name?: string | null;
   /**

@@ -13,7 +13,7 @@ export const Users: CollectionConfig = {
       name: 'name',
       type: 'text',
       admin: {
-        description: 'Shown as "Posted by: <name>" on blog posts.',
+        description: 'Shown as the author name on blog posts.',
       },
     },
     {

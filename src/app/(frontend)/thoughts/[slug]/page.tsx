@@ -44,8 +44,9 @@ const BlogHeader = ({ post, author }: BlogHeaderProps) => {
                 {avatar && avatarSrc &&
                     <img src={avatarSrc} alt={avatar.alt} width={40} height={40} className="size-10 shrink-0 rounded-full object-cover" />
                 }
-                <span>
-                    {name}{post.publishedAt && <> · <DateComponent date={post.publishedAt} /></>}
+                <span className="text-base">
+                    <span className="font-semibold">{name}</span>
+                    {post.publishedAt && <span className="opacity-70"> · <DateComponent date={post.publishedAt} /></span>}
                 </span>
             </div>
         </div>

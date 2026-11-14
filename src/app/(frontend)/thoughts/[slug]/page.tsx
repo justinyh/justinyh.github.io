@@ -27,10 +27,21 @@ const BlogHeader = ({ post, author }: BlogHeaderProps) => {
     const name = author?.name || "Justin Hu";
     const avatar = typeof author?.profilePicture === "object" ? author.profilePicture : null;
     const avatarSrc = avatar?.sizes?.thumbnail?.url || avatar?.url;
+    const hero = typeof post.hero === "object" ? post.hero : null;
 
     return (
         <div className="border-b">
             <Heading level={2}>{post.title}</Heading>
+            {hero?.url &&
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                    src={hero.url}
+                    width={hero.width ?? undefined}
+                    height={hero.height ?? undefined}
+                    alt={hero.alt}
+                    className="mt-3 w-full aspect-video object-cover rounded-md"
+                />
+            }
             <div className="py-3 flex items-center gap-3">
                 {avatar && avatarSrc &&
                     // eslint-disable-next-line @next/next/no-img-element

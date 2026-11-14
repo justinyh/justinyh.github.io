@@ -41,7 +41,7 @@ export default async function Blog() {
             <Container>
                 {featured &&
                     <>
-                        <Link href={`/thoughts/${featured.id}`} className="block space-y-4 pb-8">
+                        <Link href={`/thoughts/${featured.id}`} className="mt-6 pb-8 flex flex-col gap-6">
                             {isMediaType(featured.hero) && featured.hero.url &&
                                 <img
                                     src={featured.hero.url}
@@ -51,7 +51,7 @@ export default async function Blog() {
                                     className="w-full aspect-video object-cover rounded-md"
                                 />
                             }
-                            <div className="space-y-2">
+                            <div className="flex flex-col gap-3">
                                 <Heading level={2} tag="h1">
                                     {featured.title}
                                 </Heading>
@@ -64,11 +64,13 @@ export default async function Blog() {
                         {rest.length > 0 &&
                             <div className="divide-y divide-background-dk dark:divide-background-lt border-t border-background-dk dark:border-background-lt">
                                 {rest.map((post) =>
-                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="grid md:grid-cols-12 gap-5 py-6">
-                                        <div className="md:col-span-4">
-                                            {isMediaType(post.hero) && <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} />}
-                                        </div>
-                                        <div className="md:col-span-8 text-ellipsis space-y-2">
+                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="grid md:grid-cols-12 gap-6 py-8">
+                                        {isMediaType(post.hero) &&
+                                            <div className="md:col-span-4">
+                                                <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} />
+                                            </div>
+                                        }
+                                        <div className="md:col-span-8 md:col-start-5 text-ellipsis flex flex-col gap-3">
                                             <Heading level={3} tag="h2">
                                                 {post.title}
                                             </Heading>

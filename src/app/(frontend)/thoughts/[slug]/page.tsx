@@ -29,7 +29,7 @@ const BlogHeader = ({ post, author }: BlogHeaderProps) => {
     const hero = typeof post.hero === "object" ? post.hero : null;
 
     return (
-        <div className="border-b">
+        <div className="flex flex-col gap-6 pb-3 border-b">
             <Heading level={2}>{post.title}</Heading>
             {hero?.url &&
                 <img
@@ -37,10 +37,10 @@ const BlogHeader = ({ post, author }: BlogHeaderProps) => {
                     width={hero.width ?? undefined}
                     height={hero.height ?? undefined}
                     alt={hero.alt}
-                    className="mt-3 w-full aspect-video object-cover rounded-md"
+                    className="w-full aspect-video object-cover rounded-md"
                 />
             }
-            <div className="py-3 flex items-center gap-3">
+            <div className="flex items-center gap-3">
                 {avatar && avatarSrc &&
                     <img src={avatarSrc} alt={avatar.alt} width={40} height={40} className="size-10 shrink-0 rounded-full object-cover" />
                 }

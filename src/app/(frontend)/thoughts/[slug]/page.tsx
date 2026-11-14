@@ -29,7 +29,7 @@ const BlogHeader = ({ post, author }: BlogHeaderProps) => {
     const hero = typeof post.hero === "object" ? post.hero : null;
 
     return (
-        <div className="flex flex-col gap-6 pb-3 border-b">
+        <div className="flex flex-col gap-6">
             <Heading level={2}>{post.title}</Heading>
             {hero?.url &&
                 <img
@@ -102,9 +102,9 @@ export default async function Post({ params, searchParams }: PostPreviewProps) {
     return (
         <main className="text-lg">
             <Container>
-                <div className="mt-6 color-green">
+                <div className="mt-6 flex flex-col gap-6 color-green">
                     <BlogHeader post={post} author={author} />
-                    <div className="my-3">
+                    <div className="mb-3">
                         {post.content && <RichText className="space-y-3" data={post.content} converters={converters} /> }
                     </div>
                 </div>

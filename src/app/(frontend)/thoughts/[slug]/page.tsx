@@ -10,7 +10,7 @@ import converters from "./converters"
 import { notFound } from "next/navigation";
 import { headers as getHeaders } from "next/headers";
 import { Metadata } from "next";
-import { DateComponent } from "@/components/DateComponent";
+import { Byline } from "@/components/Byline";
 
 interface PostPreviewProps {
     params: Promise<{slug: string}>,
@@ -21,22 +21,22 @@ interface BlogHeaderProps {
     post: ThoughtType
 }
 
-const MS_PER_DAY = 1000 * 60 * 60 * 24;
-
 const BlogHeader = ({ post }: BlogHeaderProps) => {
-    const showUpdateDate = post.publishedAt && new Date(post.updatedAt).getTime() - new Date(post.publishedAt).getTime() > MS_PER_DAY;
+    const hero = typeof post.hero === "object" ? post.hero : null;
 
     return (
-        <div className="border-b">
+        <div className="flex flex-col gap-6">
             <Heading level={2}>{post.title}</Heading>
-            <div className="py-3">
-                Posted by: Justin Hu {post.publishedAt && <>on <DateComponent date={post.publishedAt} /></>}
-            </div>
-            { showUpdateDate &&
-                <div>
-                    Updated at: <DateComponent date={post.updatedAt} />
-                </div>
+            {hero?.url &&
+                <img
+                    src={hero.url}
+                    width={hero.width ?? undefined}
+                    height={hero.height ?? undefined}
+                    alt={hero.alt}
+                    className="w-full aspect-video object-cover rounded-md"
+                />
             }
+            <Byline author={post.author} date={post.publishedAt} />
         </div>
     );
 }
@@ -51,9 +51,12 @@ export async function generateMetadata(
         id: slug,
         disableErrors: true,
     });
- 
+    if (post?._status !== "published") {
+        return {};
+    }
+
     return {
-        title: post?.title,
+        title: post.title,
         description: post?.subheading,
     }
 }
@@ -71,19 +74,17 @@ export default async function Post({ params, searchParams }: PostPreviewProps) {
         collection: "thoughts",
         id: slug,
         disableErrors: true,
-        draft: true,
-        overrideAccess: false,
-        user,
+        draft: Boolean(user),
     });
-    if (!post) {
+    if (!post || (!user && post._status !== "published")) {
         notFound();
     }
     return (
         <main className="text-lg">
             <Container>
-                <div className="mt-6 color-green">
+                <div className="mt-6 flex flex-col gap-6 color-green">
                     <BlogHeader post={post} />
-                    <div className="my-3">
+                    <div className="mb-3">
                         {post.content && <RichText className="space-y-3" data={post.content} converters={converters} /> }
                     </div>
                 </div>

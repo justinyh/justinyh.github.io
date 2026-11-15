@@ -10,6 +10,7 @@ import { buildConfig } from 'payload'
 import { HomePage } from "../collections/home"
 import { Thoughts } from '../collections/thoughts'
 import { Media } from '../collections/media'
+import { Users } from '../collections/users'
 import { fileURLToPath } from 'url'
 
 const filename = fileURLToPath(import.meta.url)
@@ -41,7 +42,7 @@ export default buildConfig({
   globals: [HomePage],
 
   // Define and configure your collections in this array
-  collections: [Thoughts, Media],
+  collections: [Thoughts, Media, Users],
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || '',

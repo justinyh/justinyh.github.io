@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Heading } from "@/components/Heading"
 import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintext'
 import { isMediaType } from "@/util/payload-helpers"
-import { DateComponent } from "@/components/DateComponent"
+import { Byline } from "@/components/Byline"
 import { Thought } from "@/payload-types"
 
 export const metadata: Metadata = {
@@ -16,11 +16,6 @@ export const metadata: Metadata = {
 
 const excerpt = (post: Thought) =>
     post.subheading ? post.subheading : post.content && convertLexicalToPlaintext({ data: post.content })
-
-const PostMeta = ({ post }: { post: Thought }) =>
-    <div className="italic">
-        Justin Hu{post.publishedAt && <> · <DateComponent date={post.publishedAt} showTime={false} /></>}
-    </div>
 
 export default async function Blog() {
     const payload = await getPayload({ config })
@@ -43,7 +38,7 @@ export default async function Blog() {
             <Container>
                 {featured &&
                     <>
-                        <Link href={`/thoughts/${featured.id}`} className="block space-y-4 pb-8">
+                        <Link href={`/thoughts/${featured.id}`} className="mt-6 pb-8 flex flex-col gap-6">
                             {isMediaType(featured.hero) && featured.hero.url &&
                                 <img
                                     src={featured.hero.url}
@@ -53,11 +48,11 @@ export default async function Blog() {
                                     className="w-full aspect-video object-cover rounded-md"
                                 />
                             }
-                            <div className="space-y-2">
+                            <div className="flex flex-col gap-3">
                                 <Heading level={2} tag="h1">
                                     {featured.title}
                                 </Heading>
-                                <PostMeta post={featured} />
+                                <Byline author={featured.author} date={featured.publishedAt} showTime={false} />
                                 <p className="line-clamp-3 md:line-clamp-4">
                                     {excerpt(featured)}
                                 </p>
@@ -66,16 +61,17 @@ export default async function Blog() {
                         {rest.length > 0 &&
                             <div className="divide-y divide-background-dk dark:divide-background-lt border-t border-background-dk dark:border-background-lt">
                                 {rest.map((post) =>
-                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="grid md:grid-cols-12 gap-5 py-6">
-                                        <div className="md:col-span-4">
-                                            {isMediaType(post.hero) && <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} />}
-                                        </div>
-                                        <div className="md:col-span-8 text-ellipsis space-y-2">
-                                            <Heading level={3} tag="h2">
+                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="grid grid-cols-12 gap-4 md:gap-6 py-8">
+                                        {isMediaType(post.hero) &&
+                                            <div className="col-span-4">
+                                                <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} className="w-full aspect-square object-cover rounded-md" />
+                                            </div>
+                                        }
+                                        <div className="col-span-8 col-start-5 min-w-0 flex flex-col gap-3">
+                                            <Heading level={5} tag="h2">
                                                 {post.title}
                                             </Heading>
-                                            <PostMeta post={post} />
-                                            <p className="line-clamp-2 md:line-clamp-3">
+                                            <p className="text-base line-clamp-2 md:line-clamp-3">
                                                 {excerpt(post)}
                                             </p>
                                         </div>

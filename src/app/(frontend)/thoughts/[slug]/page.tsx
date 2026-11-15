@@ -1,4 +1,4 @@
-import { Thought as ThoughtType, User as UserType } from "@/payload-types";
+import { Thought as ThoughtType } from "@/payload-types";
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Heading } from "@/components/Heading";
 import { getPayload } from "payload";
@@ -19,10 +19,9 @@ interface PostPreviewProps {
 
 interface BlogHeaderProps {
     post: ThoughtType
-    author?: Pick<UserType, "name" | "profilePicture"> | null
 }
 
-const BlogHeader = ({ post, author }: BlogHeaderProps) => {
+const BlogHeader = ({ post }: BlogHeaderProps) => {
     const hero = typeof post.hero === "object" ? post.hero : null;
 
     return (
@@ -37,7 +36,7 @@ const BlogHeader = ({ post, author }: BlogHeaderProps) => {
                     className="w-full aspect-video object-cover rounded-md"
                 />
             }
-            <Byline author={author} date={post.publishedAt} />
+            <Byline author={post.author} date={post.publishedAt} />
         </div>
     );
 }
@@ -52,9 +51,12 @@ export async function generateMetadata(
         id: slug,
         disableErrors: true,
     });
- 
+    if (post?._status !== "published") {
+        return {};
+    }
+
     return {
-        title: post?.title,
+        title: post.title,
         description: post?.subheading,
     }
 }
@@ -72,28 +74,16 @@ export default async function Post({ params, searchParams }: PostPreviewProps) {
         collection: "thoughts",
         id: slug,
         disableErrors: true,
-        draft: true,
-        overrideAccess: false,
-        user,
+        draft: Boolean(user),
     });
-    if (!post) {
+    if (!post || (!user && post._status !== "published")) {
         notFound();
     }
-    const authorId = typeof post.author === "object" ? post.author?.id : post.author;
-    const author = authorId
-        ? await payload.findByID({
-            collection: "users",
-            id: authorId,
-            depth: 1,
-            disableErrors: true,
-            select: { name: true, profilePicture: true },
-        })
-        : null;
     return (
         <main className="text-lg">
             <Container>
                 <div className="mt-6 flex flex-col gap-6 color-green">
-                    <BlogHeader post={post} author={author} />
+                    <BlogHeader post={post} />
                     <div className="mb-3">
                         {post.content && <RichText className="space-y-3" data={post.content} converters={converters} /> }
                     </div>

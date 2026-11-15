@@ -8,9 +8,10 @@ interface Props {
 }
 
 export const Byline = ({ author, date, showTime }: Props) => {
-    const profile = typeof author === "object" ? author : null;
-    const name = profile?.name || "Justin Hu";
-    const avatar = typeof profile?.profilePicture === "object" ? profile.profilePicture : null;
+    if (typeof author !== "object" || !author.name) {
+        return null;
+    }
+    const avatar = typeof author.profilePicture === "object" ? author.profilePicture : null;
     const avatarSrc = avatar?.sizes?.thumbnail?.url || avatar?.url;
 
     return (
@@ -19,7 +20,7 @@ export const Byline = ({ author, date, showTime }: Props) => {
                 <img src={avatarSrc} alt={avatar.alt} width={40} height={40} className="size-10 shrink-0 rounded-full object-cover" />
             }
             <span className="text-base">
-                <span className="font-semibold">{name}</span>
+                <span className="font-semibold">{author.name}</span>
                 {date && <span className="opacity-70"> · <DateComponent date={date} showTime={showTime} /></span>}
             </span>
         </div>

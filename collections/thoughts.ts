@@ -53,6 +53,7 @@ export const Thoughts: CollectionConfig = {
       name: 'author',
       type: 'relationship',
       relationTo: 'users',
+      required: true,
       defaultValue: ({ user }) => user?.id,
       admin: {
         position: 'sidebar',

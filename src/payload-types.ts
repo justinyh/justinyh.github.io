@@ -148,7 +148,7 @@ export interface Thought {
     [k: string]: unknown;
   } | null;
   publishedAt?: string | null;
-  author?: (string | null) | User;
+  author: string | User;
   /**
    * Show at the top of the Thoughts page. If several posts are featured, the most recent one wins.
    */

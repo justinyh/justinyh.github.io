@@ -2,7 +2,7 @@ import { User } from "@/payload-types";
 import { DateComponent } from "@/components/DateComponent";
 
 interface Props {
-    author?: Pick<User, "name" | "profilePicture"> | string | null
+    author: Pick<User, "name" | "profilePicture"> | string
     date?: string | null
     showTime?: boolean
 }

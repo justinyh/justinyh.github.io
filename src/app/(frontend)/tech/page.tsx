@@ -1,3 +1,4 @@
+import { PageMain } from "@/components/PageMain"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -7,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function Projects() {
     return (
-        <main className="text-center">
+        <PageMain className="text-center">
             Coming soon!
-        </main>
+        </PageMain>
     )
 }

@@ -1,3 +1,4 @@
+import { PageMain } from "@/components/PageMain"
 import Container from "@/components/Container";
 import Tab from "@/components/tabs/Tab";
 import Tabs from "@/components/tabs/Tabs";
@@ -28,7 +29,7 @@ export default async function AboutPage({ searchParams }: IProps) {
     const { type: typeParam } = await searchParams;
     const type = isEnum<ResumeType>(typeParam, ResumeType) ? typeParam : ResumeType.Engineer;
     return (
-        <main className="mt-4">
+        <PageMain className="mt-4">
             <Container>
                 <Tabs>
                     <Tab id={ResumeType.Engineer.toString()} href={'?type=professional'} active={type}>Engineer 🖥️</Tab>
@@ -38,6 +39,6 @@ export default async function AboutPage({ searchParams }: IProps) {
                     <TabSwitcher type={type} />
                 </div>
             </Container>
-        </main>
+        </PageMain>
     );
 }

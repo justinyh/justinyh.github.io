@@ -1,3 +1,4 @@
+import { PageMain } from "@/components/PageMain"
 import { Metadata } from "next"
 import { getPayload } from 'payload'
 import config from "@payload-config"
@@ -34,7 +35,7 @@ export default async function Blog() {
     const rest = posts.docs.filter((post) => post.id !== featured?.id)
 
     return (
-        <main className="text-lg">
+        <PageMain className="text-lg">
             <Container>
                 {featured &&
                     <>
@@ -81,6 +82,6 @@ export default async function Blog() {
                     </>
                 }
             </Container>
-        </main>
+        </PageMain>
     )
 }

@@ -1,3 +1,4 @@
+import { PageMain } from "@/components/PageMain"
 import Image from "next/image";
 import Container from "@/components/Container";
 import ButtonGroup from "@/components/buttons/ButtonGroup";
@@ -27,7 +28,7 @@ export default async function Home() {
   });
   const resumeUrl = isMediaType(home.resume) && home.resume.url ? home.resume.url : "";
   return (
-    <main className="">
+    <PageMain className="">
       <Container>
         <div className="flex flex-col mt-12 gap-32">
           <SideBySide sx="flex-col-reverse items-center" gap={8}>
@@ -57,6 +58,6 @@ export default async function Home() {
           __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
         }}
       />
-    </main>
+    </PageMain>
   );
 }

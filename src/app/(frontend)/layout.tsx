@@ -7,6 +7,7 @@ import React, { PropsWithChildren } from "react";
 import NavBar from "@/components/navigation/NavBar";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
+import { MotionConfig } from "motion/react";
 
 const poppins = DM_Sans({ 
   subsets: ["latin"],
@@ -17,10 +18,12 @@ export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="en" className="">
       <body className={poppins.className}>
-      <NavBar />
+        <MotionConfig reducedMotion="user">
+          <NavBar />
           {props.children}
           <Footer />
-          <Analytics />
+        </MotionConfig>
+        <Analytics />
       </body>
     </html>
   );

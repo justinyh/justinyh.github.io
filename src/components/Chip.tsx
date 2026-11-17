@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
-import Link from "next/link"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons"
 
 interface ChipProps {
     children: ReactNode,
@@ -8,19 +9,21 @@ interface ChipProps {
     href?: string,
 }
 
-export const Chip = ({ children, href, ...props }: ChipProps) => {
+const baseClasses = "inline-flex items-center gap-1 align-[0.1em] whitespace-nowrap rounded-full bg-green px-2 py-0.5 text-[0.8em] font-semibold leading-tight text-white shadow-sm"
+
+const linkClasses = "no-underline transition duration-200 hover:-translate-y-px hover:shadow-md hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+
+export const Chip = ({ children, href, fillColor, fontColor }: ChipProps) => {
+    const style = { backgroundColor: fillColor, color: fontColor }
+
     if (href) {
         return (
-            <Link href={href} target="_blank">
-                <ChipContent {...props}>{children}</ChipContent>
-            </Link>
+            <a href={href} target="_blank" rel="noopener noreferrer" className={`${baseClasses} ${linkClasses}`} style={style}>
+                {children}
+                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-[0.75em] opacity-70" aria-hidden />
+            </a>
         )
     }
-    return (<ChipContent {...props}>{children}</ChipContent>);
-}
 
-const ChipContent = ({ fillColor, fontColor, children}: Omit<ChipProps, "href">) => (
-    <span className="font-bold text-xs align-middle bg-green p-1 px-1.5 rounded-full shadow-md text-white whitespace-nowrap inline-flex " style={{backgroundColor: fillColor, color: fontColor}}>
-        {children}
-    </span>
-)
+    return <span className={baseClasses} style={style}>{children}</span>
+}

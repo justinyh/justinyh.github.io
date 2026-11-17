@@ -47,7 +47,7 @@ export default async function Blog() {
                                     width={featured.hero.width ?? undefined}
                                     height={featured.hero.height ?? undefined}
                                     alt={featured.hero.alt}
-                                    className="w-full aspect-video object-cover rounded-md"
+                                    className="w-full aspect-[2/1] object-cover rounded-md"
                                 />
                             }
                             <div className="flex flex-col gap-3">
@@ -63,11 +63,11 @@ export default async function Blog() {
                         {rest.length > 0 &&
                             <div className="divide-y divide-background-dk dark:divide-background-lt border-t border-background-dk dark:border-background-lt md:divide-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-6 md:gap-y-12 md:pt-8">
                                 {rest.map((post) =>
-                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="flex flex-col gap-4 py-8 md:py-0">
+                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="flex flex-row gap-4 py-8 md:flex-col md:py-0">
                                         {isMediaType(post.hero) &&
-                                            <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} className="w-full aspect-video object-cover rounded-md" />
+                                            <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} className="order-last md:order-none w-24 shrink-0 self-start md:w-full aspect-square md:aspect-video object-cover rounded-md" />
                                         }
-                                        <div className="min-w-0 flex flex-col gap-3">
+                                        <div className="flex-1 min-w-0 flex flex-col gap-3">
                                             <Heading level={5} tag="h2">
                                                 {post.title}
                                             </Heading>

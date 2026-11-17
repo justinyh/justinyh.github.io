@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidatePath } from 'next/cache'
 
 export const Thoughts: CollectionConfig = {
   slug: 'thoughts',
@@ -73,6 +74,9 @@ export const Thoughts: CollectionConfig = {
     beforeChange: [
       async ({ data, operation, originalDoc, req: { payload } }) => {
         if (operation === 'create') {
+          if (data._status === 'published') {
+            data.publishedAt = new Date().toISOString()
+          }
           return data;
         }
         const currentDoc = await payload.findByID({
@@ -83,10 +87,26 @@ export const Thoughts: CollectionConfig = {
           data._status === 'published' &&
           currentDoc._status !== 'published'
         ) {
-          data.publishedAt = data.updatedAt
+          data.publishedAt = new Date().toISOString()
         }
 
         return data
+      },
+    ],
+    afterChange: [
+      ({ doc, previousDoc }) => {
+        if (doc._status === 'published' || previousDoc?._status === 'published') {
+          revalidatePath('/thoughts')
+        }
+        return doc
+      },
+    ],
+    afterDelete: [
+      ({ doc }) => {
+        if (doc._status === 'published') {
+          revalidatePath('/thoughts')
+        }
+        return doc
       },
     ],
   },

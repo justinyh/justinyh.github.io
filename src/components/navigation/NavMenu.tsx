@@ -15,7 +15,7 @@ export default function NavMenu(props: IProps) {
                 {isVisible &&
                     <motion.div
                         id="mobile-menu"
-                        className="sm:hidden fixed left-0 top-0 z-20 w-full h-[100lvh] bg-(--background-hex)/95 backdrop-blur-xl"
+                        className="sm:hidden fixed inset-0 z-20 bg-(--background-hex)"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}

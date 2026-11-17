@@ -1,11 +1,11 @@
 import { PropsWithChildren, ReactNode } from "react";
 import Link from "../../../node_modules/next/link";
-import { variantClasses } from "./ButtonHelpers";
+import { ButtonVariant, variantClasses } from "./Button";
 
 interface LinkButtonProps {
     href: string,
     newTab?: boolean,
-    variant?: keyof typeof variantClasses,
+    variant?: ButtonVariant,
 }
 
 export function LinkButton({ variant="primary", children, href="#", newTab = false }: PropsWithChildren<LinkButtonProps>) {

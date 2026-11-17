@@ -1,9 +1,8 @@
 "use client"
 
 import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/react-fontawesome/index";
-import Button from "./Button";
 import { IconDefinition, SizeProp } from "@fortawesome/fontawesome-svg-core";
-import { variantClasses } from "./ButtonHelpers";
+import Button, { ButtonVariant } from "./Button";
 import { ReactNode } from "react";
 
 interface IProps {
@@ -13,7 +12,7 @@ interface IProps {
     size?: SizeProp,
     sx?: string,
     children?: ReactNode,
-    variant?: keyof typeof variantClasses,
+    variant?: ButtonVariant,
 }
 
 export default function IconButton(props: IProps) {

@@ -55,7 +55,7 @@ export default async function Blog() {
                                     {featured.title}
                                 </Heading>
                                 <Byline author={featured.author} date={featured.publishedAt} showTime={false} />
-                                <p className="line-clamp-3 md:line-clamp-4">
+                                <p className="line-clamp-1">
                                     {excerpt(featured)}
                                 </p>
                             </div>

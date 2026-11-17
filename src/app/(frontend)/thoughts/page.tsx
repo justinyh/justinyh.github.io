@@ -8,6 +8,7 @@ import { Heading } from "@/components/Heading"
 import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintext'
 import { isMediaType } from "@/util/payload-helpers"
 import { Byline } from "@/components/Byline"
+import { DateComponent } from "@/components/DateComponent"
 import { Thought } from "@/payload-types"
 
 export const metadata: Metadata = {
@@ -73,7 +74,12 @@ export default async function Blog() {
                                             <p className="text-base line-clamp-2 md:line-clamp-3">
                                                 {excerpt(post)}
                                             </p>
-                                            <Byline author={post.author} date={post.publishedAt} showTime={false} small />
+                                            {typeof post.author === "object" && post.author.name &&
+                                                <p className="text-sm">
+                                                    <span className="font-semibold">{post.author.name}</span>
+                                                    {post.publishedAt && <span className="opacity-70"> · <DateComponent date={post.publishedAt} showTime={false} /></span>}
+                                                </p>
+                                            }
                                         </div>
                                     </Link>)}
                             </div>

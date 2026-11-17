@@ -5,9 +5,10 @@ interface Props {
     author: Pick<User, "name" | "profilePicture"> | string
     date?: string | null
     showTime?: boolean
+    small?: boolean
 }
 
-export const Byline = ({ author, date, showTime }: Props) => {
+export const Byline = ({ author, date, showTime, small }: Props) => {
     if (typeof author !== "object" || !author.name) {
         return null;
     }
@@ -15,11 +16,11 @@ export const Byline = ({ author, date, showTime }: Props) => {
     const avatarSrc = avatar?.sizes?.thumbnail?.url || avatar?.url;
 
     return (
-        <div className="flex items-center gap-3">
+        <div className={`flex items-center ${small ? "gap-2" : "gap-3"}`}>
             {avatar && avatarSrc &&
-                <img src={avatarSrc} alt={avatar.alt} width={40} height={40} className="size-10 shrink-0 rounded-full object-cover" />
+                <img src={avatarSrc} alt={avatar.alt} width={40} height={40} className={`${small ? "size-6" : "size-10"} shrink-0 rounded-full object-cover`} />
             }
-            <span className="text-base">
+            <span className={small ? "text-sm" : "text-base"}>
                 <span className="font-semibold">{author.name}</span>
                 {date && <span className="opacity-70"> · <DateComponent date={date} showTime={showTime} /></span>}
             </span>

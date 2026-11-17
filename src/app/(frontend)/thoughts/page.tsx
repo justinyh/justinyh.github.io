@@ -73,6 +73,7 @@ export default async function Blog() {
                                             <p className="text-base line-clamp-2 md:line-clamp-3">
                                                 {excerpt(post)}
                                             </p>
+                                            <Byline author={post.author} date={post.publishedAt} showTime={false} small />
                                         </div>
                                     </Link>)}
                             </div>

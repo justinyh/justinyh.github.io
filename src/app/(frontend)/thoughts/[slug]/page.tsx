@@ -101,7 +101,7 @@ export default async function Post({ params, searchParams }: PostPreviewProps) {
                         </RevealItem>
                     }
                     <RevealItem kind="meta">
-                        <Byline author={post.author} date={post.publishedAt} />
+                        <Byline author={post.author} date={post.publishedAt} stackOnMobile />
                     </RevealItem>
                     <RevealItem kind="body" className="mb-3">
                         {post.content && <RichText className="space-y-3" data={post.content} converters={converters} /> }

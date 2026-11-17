@@ -5,9 +5,10 @@ interface Props {
     author: Pick<User, "name" | "profilePicture"> | string
     date?: string | null
     showTime?: boolean
+    stackOnMobile?: boolean
 }
 
-export const Byline = ({ author, date, showTime }: Props) => {
+export const Byline = ({ author, date, showTime, stackOnMobile }: Props) => {
     if (typeof author !== "object" || !author.name) {
         return null;
     }
@@ -21,7 +22,10 @@ export const Byline = ({ author, date, showTime }: Props) => {
             }
             <span className="text-base">
                 <span className="font-semibold">{author.name}</span>
-                {date && <span className="opacity-70"> · <DateComponent date={date} showTime={showTime} /></span>}
+                {date && (stackOnMobile
+                    ? <span className="block text-sm opacity-70 sm:inline sm:text-base"><span className="hidden sm:inline"> · </span><DateComponent date={date} showTime={showTime} /></span>
+                    : <span className="opacity-70"> · <DateComponent date={date} showTime={showTime} /></span>
+                )}
             </span>
         </div>
     );

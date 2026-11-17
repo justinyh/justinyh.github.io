@@ -9,6 +9,8 @@ import converters from "./converters"
 import { notFound } from "next/navigation";
 import { headers as getHeaders } from "next/headers";
 import { Metadata } from "next";
+import { convertLexicalToPlaintext } from "@payloadcms/richtext-lexical/plaintext";
+import { isMediaType } from "@/util/payload-helpers";
 import { Byline } from "@/components/Byline";
 import { RevealGroup, RevealItem } from "./Reveal";
 import Link from "next/link";
@@ -34,9 +36,25 @@ export async function generateMetadata(
         return {};
     }
 
+    const text = post.subheading || (post.content ? convertLexicalToPlaintext({ data: post.content }).replace(/\s+/g, " ").trim() : "")
+    const description = text.length > 155 ? text.slice(0, 155).trimEnd() + "…" : text
+    const image = isMediaType(post.hero) ? post.hero.url : undefined
+    const title = post.title ?? undefined
+
     return {
-        title: post.title,
-        description: post?.subheading,
+        metadataBase: new URL("https://justinyh.com"),
+        title: title && `${title} | Justin Hu`,
+        description,
+        openGraph: {
+            type: "article",
+            title,
+            description,
+            publishedTime: post.publishedAt ?? undefined,
+            images: image ? [image] : undefined,
+        },
+        twitter: {
+            card: image ? "summary_large_image" : "summary",
+        },
     }
 }
 

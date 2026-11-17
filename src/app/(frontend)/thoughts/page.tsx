@@ -60,15 +60,13 @@ export default async function Blog() {
                             </div>
                         </Link>
                         {rest.length > 0 &&
-                            <div className="divide-y divide-background-dk dark:divide-background-lt border-t border-background-dk dark:border-background-lt">
+                            <div className="divide-y divide-background-dk dark:divide-background-lt border-t border-background-dk dark:border-background-lt md:divide-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-6 md:gap-y-12 md:pt-8">
                                 {rest.map((post) =>
-                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="grid grid-cols-12 gap-4 md:gap-6 py-8">
+                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="flex flex-col gap-4 py-8 md:py-0">
                                         {isMediaType(post.hero) &&
-                                            <div className="col-span-4">
-                                                <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} className="w-full aspect-square object-cover rounded-md" />
-                                            </div>
+                                            <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} className="w-full aspect-video object-cover rounded-md" />
                                         }
-                                        <div className="col-span-8 col-start-5 min-w-0 flex flex-col gap-3">
+                                        <div className="min-w-0 flex flex-col gap-3">
                                             <Heading level={5} tag="h2">
                                                 {post.title}
                                             </Heading>

@@ -8,6 +8,7 @@ import { Heading } from "@/components/Heading"
 import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintext'
 import { isMediaType } from "@/util/payload-helpers"
 import { Byline } from "@/components/Byline"
+import { DateComponent } from "@/components/DateComponent"
 import { Thought } from "@/payload-types"
 
 export const metadata: Metadata = {
@@ -54,27 +55,31 @@ export default async function Blog() {
                                     {featured.title}
                                 </Heading>
                                 <Byline author={featured.author} date={featured.publishedAt} showTime={false} />
-                                <p className="line-clamp-3 md:line-clamp-4">
+                                <p className="line-clamp-1">
                                     {excerpt(featured)}
                                 </p>
                             </div>
                         </Link>
                         {rest.length > 0 &&
-                            <div className="divide-y divide-background-dk dark:divide-background-lt border-t border-background-dk dark:border-background-lt">
+                            <div className="divide-y divide-background-dk dark:divide-background-lt border-t border-background-dk dark:border-background-lt md:divide-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-6 md:gap-y-12 md:pt-8">
                                 {rest.map((post) =>
-                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="grid grid-cols-12 gap-4 md:gap-6 py-8">
+                                    <Link key={post.id} href={`/thoughts/${post.id}`} className="flex flex-col gap-4 py-8 md:py-0">
                                         {isMediaType(post.hero) &&
-                                            <div className="col-span-4">
-                                                <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} className="w-full aspect-square object-cover rounded-md" />
-                                            </div>
+                                            <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} className="w-full aspect-video object-cover rounded-md" />
                                         }
-                                        <div className="col-span-8 col-start-5 min-w-0 flex flex-col gap-3">
+                                        <div className="min-w-0 flex flex-col gap-3">
                                             <Heading level={5} tag="h2">
                                                 {post.title}
                                             </Heading>
                                             <p className="text-base line-clamp-2 md:line-clamp-3">
                                                 {excerpt(post)}
                                             </p>
+                                            {typeof post.author === "object" && post.author.name &&
+                                                <p className="text-sm">
+                                                    <span className="font-semibold">{post.author.name}</span>
+                                                    {post.publishedAt && <span className="opacity-70"> · <DateComponent date={post.publishedAt} showTime={false} /></span>}
+                                                </p>
+                                            }
                                         </div>
                                     </Link>)}
                             </div>

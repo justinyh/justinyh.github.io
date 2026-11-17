@@ -17,8 +17,8 @@ interface IProps {
 }
 
 export const metadata: Metadata = {
-title: 'Justin Hu | About',
-description: 'Justin Hu is a software engineer based in Chicago, IL. He has over three years of development experience.',
+    title: 'Justin Hu | About',
+    description: 'Justin Hu is a Seattle-based software engineer at Atlassian with 5+ years of full-stack experience. Read about his path from biology to software.',
 }
 
 export default async function AboutPage({ searchParams }: IProps) {

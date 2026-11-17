@@ -14,6 +14,7 @@ export const Byline = ({ author, date, showTime, stackOnMobile }: Props) => {
     }
     const avatar = typeof author.profilePicture === "object" ? author.profilePicture : null;
     const avatarSrc = avatar?.sizes?.thumbnail?.url || avatar?.url;
+    const stackedDate = stackOnMobile ? "max-sm:block max-sm:text-sm max-sm:before:content-none" : "";
 
     return (
         <div className="flex items-center gap-3">
@@ -22,9 +23,10 @@ export const Byline = ({ author, date, showTime, stackOnMobile }: Props) => {
             }
             <span className="text-base">
                 <span className="font-semibold">{author.name}</span>
-                {date && (stackOnMobile
-                    ? <span className="block text-sm opacity-70 sm:inline sm:text-base"><span className="hidden sm:inline"> · </span><DateComponent date={date} showTime={showTime} /></span>
-                    : <span className="opacity-70"> · <DateComponent date={date} showTime={showTime} /></span>
+                {date && (
+                    <span className={`opacity-70 before:content-['_·_'] ${stackedDate}`}>
+                        <DateComponent date={date} showTime={showTime} />
+                    </span>
                 )}
             </span>
         </div>

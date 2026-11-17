@@ -81,12 +81,14 @@ export default async function Post({ params, searchParams }: PostPreviewProps) {
     return (
         <main className="text-lg">
             <Container>
-                <Link href="/thoughts" className="group mt-6 inline-flex items-center gap-2 text-base opacity-70 transition hover:opacity-100 hover:text-primary">
-                    <FontAwesomeIcon icon={faArrowLeft} className="size-3.5 transition-transform group-hover:-translate-x-1" />
-                    All thoughts
-                </Link>
+                <div className="mt-3 w-full max-w-2xl mx-auto">
+                    <Link href="/thoughts" className="group inline-flex items-center gap-2 text-base opacity-70 transition hover:opacity-100 hover:text-primary">
+                        <FontAwesomeIcon icon={faArrowLeft} className="size-3.5 transition-transform group-hover:-translate-x-1" />
+                        All thoughts
+                    </Link>
+                </div>
                 <RevealGroup className="mt-4 flex flex-col gap-6 color-green">
-                    <RevealItem kind="title">
+                    <RevealItem kind="title" className="w-full max-w-2xl mx-auto">
                         <Heading level={2}>{post.title}</Heading>
                     </RevealItem>
                     {hero?.url &&
@@ -96,14 +98,14 @@ export default async function Post({ params, searchParams }: PostPreviewProps) {
                                 width={hero.width ?? undefined}
                                 height={hero.height ?? undefined}
                                 alt={hero.alt}
-                                className="w-full aspect-video object-cover rounded-md"
+                                className="w-full h-auto max-h-[70vh] object-cover rounded-md"
                             />
                         </RevealItem>
                     }
-                    <RevealItem kind="meta">
+                    <RevealItem kind="meta" className="w-full max-w-2xl mx-auto">
                         <Byline author={post.author} date={post.publishedAt} stackOnMobile />
                     </RevealItem>
-                    <RevealItem kind="body" className="mb-3">
+                    <RevealItem kind="body" className="mb-3 w-full max-w-2xl mx-auto">
                         {post.content && <RichText className="space-y-3" data={post.content} converters={converters} /> }
                     </RevealItem>
                 </RevealGroup>

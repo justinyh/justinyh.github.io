@@ -18,10 +18,10 @@ export const Media: CollectionConfig = {
     },
     imageSizes: [
       { name: 'thumbnail', width: 300, height: 300, formatOptions: webp },
-      { name: 'small', width: 640, withoutEnlargement: true, formatOptions: webp },
-      { name: 'medium', width: 1024, withoutEnlargement: true, formatOptions: webp },
-      { name: 'large', width: 1600, withoutEnlargement: true, formatOptions: webp },
-      { name: 'xlarge', width: 2400, withoutEnlargement: true, formatOptions: webp },
+      { name: 'small', width: 640, formatOptions: webp },
+      { name: 'medium', width: 1024, formatOptions: webp },
+      { name: 'large', width: 1600, formatOptions: webp },
+      { name: 'xlarge', width: 2400, formatOptions: webp },
       {
         name: 'og',
         width: 1200,

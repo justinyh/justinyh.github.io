@@ -7,6 +7,7 @@ import Link from "next/link"
 import { Heading } from "@/components/Heading"
 import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintext'
 import { isMediaType } from "@/util/payload-helpers"
+import { PayloadImage } from "@/components/PayloadImage"
 import { Byline } from "@/components/Byline"
 import { DateComponent } from "@/components/DateComponent"
 import { Thought } from "@/payload-types"
@@ -41,12 +42,11 @@ export default async function Blog() {
                 {featured &&
                     <>
                         <Link href={`/thoughts/${featured.id}`} className="mt-6 pb-8 flex flex-col gap-6">
-                            {isMediaType(featured.hero) && featured.hero.url &&
-                                <img
-                                    src={featured.hero.url}
-                                    width={featured.hero.width ?? undefined}
-                                    height={featured.hero.height ?? undefined}
-                                    alt={featured.hero.alt}
+                            {isMediaType(featured.hero) &&
+                                <PayloadImage
+                                    media={featured.hero}
+                                    sizes="(min-width: 1280px) 1216px, 100vw"
+                                    priority
                                     className="w-full aspect-[2/1] object-cover rounded-md"
                                 />
                             }
@@ -65,7 +65,7 @@ export default async function Blog() {
                                 {rest.map((post) =>
                                     <Link key={post.id} href={`/thoughts/${post.id}`} className="flex flex-row gap-4 py-8 md:flex-col md:py-0">
                                         {isMediaType(post.hero) &&
-                                            <img src={post.hero.sizes?.thumbnail?.url || ''} width={640} height={640} alt={post.hero.alt} className="order-last md:order-none w-24 shrink-0 self-start md:w-full aspect-square md:aspect-video object-cover rounded-md" />
+                                            <PayloadImage media={post.hero} sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 96px" className="order-last md:order-none w-24 shrink-0 self-start md:w-full aspect-square md:aspect-video object-cover rounded-md" />
                                         }
                                         <div className="flex-1 min-w-0 flex flex-col gap-3">
                                             <Heading level={5} tag="h2">

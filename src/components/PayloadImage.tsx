@@ -12,11 +12,17 @@ interface Props extends Omit<ComponentProps<"img">, "src" | "srcSet" | "alt" | "
 }
 
 export const PayloadImage = ({ media, sizes, priority, ...rest }: Props) => {
-    const variants = responsiveSizes
+    const candidates = responsiveSizes
         .map((name) => media.sizes?.[name])
-        .filter((size, i, all) => size?.url && size.width && all.findIndex((other) => other?.width === size.width) === i);
-    const srcSet = variants.length
-        ? variants.map((size) => `${size!.url} ${size!.width}w`).join(", ")
+        .filter((size) => size?.url && size.width)
+        .map((size) => ({ url: size!.url!, width: size!.width! }));
+    const widest = Math.max(0, ...candidates.map((c) => c.width));
+    if (!media.sizes?.xlarge?.url && media.url && media.width && media.width > widest) {
+        candidates.push({ url: media.url, width: media.width });
+    }
+    const unique = candidates.filter((c, i) => candidates.findIndex((other) => other.width === c.width) === i);
+    const srcSet = unique.length
+        ? unique.map((c) => `${c.url} ${c.width}w`).join(", ")
         : undefined;
     const src = media.sizes?.large?.url || media.url;
 

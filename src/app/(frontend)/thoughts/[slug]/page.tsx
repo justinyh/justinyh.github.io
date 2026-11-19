@@ -12,6 +12,7 @@ import { Metadata } from "next";
 import { convertLexicalToPlaintext } from "@payloadcms/richtext-lexical/plaintext";
 import { isMediaType } from "@/util/payload-helpers";
 import { Byline } from "@/components/Byline";
+import { PayloadImage } from "@/components/PayloadImage";
 import { RevealGroup, RevealItem } from "./Reveal";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,7 +39,7 @@ export async function generateMetadata(
 
     const text = post.subheading || (post.content ? convertLexicalToPlaintext({ data: post.content }).replace(/\s+/g, " ").trim() : "")
     const description = text.length > 155 ? text.slice(0, 155).trimEnd() + "…" : text
-    const image = isMediaType(post.hero) ? post.hero.url : undefined
+    const image = isMediaType(post.hero) ? post.hero.sizes?.og?.url || post.hero.url : undefined
     const title = post.title ?? undefined
 
     return {
@@ -91,13 +92,12 @@ export default async function Post({ params, searchParams }: PostPreviewProps) {
                     <RevealItem kind="title" className="w-full max-w-2xl mx-auto">
                         <Heading level={2}>{post.title}</Heading>
                     </RevealItem>
-                    {hero?.url &&
+                    {hero &&
                         <RevealItem kind="hero">
-                            <img
-                                src={hero.url}
-                                width={hero.width ?? undefined}
-                                height={hero.height ?? undefined}
-                                alt={hero.alt}
+                            <PayloadImage
+                                media={hero}
+                                sizes="(min-width: 1280px) 1216px, 100vw"
+                                priority
                                 className="w-full h-auto max-h-[70vh] object-cover rounded-md"
                             />
                         </RevealItem>

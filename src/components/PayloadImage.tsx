@@ -14,7 +14,7 @@ interface Props extends Omit<ComponentProps<"img">, "src" | "srcSet" | "alt" | "
 export const PayloadImage = ({ media, sizes, priority, ...rest }: Props) => {
     const variants = responsiveSizes
         .map((name) => media.sizes?.[name])
-        .filter((size) => size?.url && size.width);
+        .filter((size, i, all) => size?.url && size.width && all.findIndex((other) => other?.width === size.width) === i);
     const srcSet = variants.length
         ? variants.map((size) => `${size!.url} ${size!.width}w`).join(", ")
         : undefined;

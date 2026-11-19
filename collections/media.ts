@@ -17,7 +17,7 @@ export const Media: CollectionConfig = {
       withoutEnlargement: true,
     },
     imageSizes: [
-      { name: 'thumbnail', width: 640, height: 640, formatOptions: webp },
+      { name: 'thumbnail', width: 300, height: 300, formatOptions: webp },
       { name: 'small', width: 640, withoutEnlargement: true, formatOptions: webp },
       { name: 'medium', width: 1024, withoutEnlargement: true, formatOptions: webp },
       { name: 'large', width: 1600, withoutEnlargement: true, formatOptions: webp },
